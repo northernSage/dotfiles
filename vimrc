@@ -47,19 +47,23 @@ set nohlsearch " remove search highlight
 
 syntax on " enable syntax highlight
 
-" Enable folding
+" enable folding
 set foldmethod=indent
 set foldlevel=99
 
-" Enable folding with the spacebar
+" enable folding with the spacebar
 nnoremap <space> za
 
 set viminfo='20,<1000,s1000 " prevents truncated yanks, deletes, etc
+
+" treat bashconfig as a bash file
+au bufnewfile,bufRead bashconfig set filetype=sh
 
 
 " *****************
 " * FUNCTION KEYS *
 " *****************
+
 
 set pastetoggle=<F3> " enable paste mode
 

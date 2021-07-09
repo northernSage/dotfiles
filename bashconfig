@@ -4,11 +4,30 @@
 if [ -f /etc/bashrc ]; then . /etc/bashrc
 fi
 
+# check the window size after each command and
+# update the values of LINES and COLUMNS
+shopt -s checkwinsize
+
+# set default editor
+export EDITOR=vim
+export VISUAL=vim
+
+# enable vim mode
+set -o vi
+
+# add user scripts to path
+export PATH=$HOME/Repos/gitlab.com/northernsage/dotfiles/scripts:$PATH
+
+# reset aliases
+unalias -a
+
 
 # ***********
 # * aliases *
 # ***********
 
+# typing clear every time got old...
+alias c=clear
 
 # Common variations of 'ls' command
 alias ll="ls -l"
@@ -43,9 +62,6 @@ alias dow='cd ~/Downloads'
 alias pic='cd ~/Pictures'
 alias bin='cd ~/bin'
 
-# pipe stuff into clipboard
-alias clipboard='xclip -sel clip'
-
 
 # *******************
 # * SCAPE SEQUENCES *
@@ -75,16 +91,6 @@ BANSIPURPLE='\[\e[1;35m\]'
 BANSICYAN='\[\e[1;36m\]'
 BANSIWHITE='\[\e[1;37m\]'
 
-# check the window size after each command and
-# update the values of LINES and COLUMNS
-shopt -s checkwinsize
-
-# set default editor
-export EDITOR=vim
-export VISUAL=vim
-
-# enable vim mode
-set -o vi
 
 # *************
 # * FUNCTIONS *
@@ -225,4 +231,3 @@ PERL5LIB="/home/gfvante/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5L
 PERL_LOCAL_LIB_ROOT="/home/gfvante/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/gfvante/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/gfvante/perl5"; export PERL_MM_OPT;
-
