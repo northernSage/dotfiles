@@ -16,7 +16,8 @@ export VISUAL=vim
 set -o vi
 
 # add user scripts to path
-export PATH=$HOME/Repos/gitlab.com/northernsage/dotfiles/scripts:$PATH
+DOTFILES=$HOME/Repos/gitlab.com/northernsage/dotfiles
+export PATH=$DOTFILES/lynx:$DOTFILES/scripts:$PATH
 
 # reset aliases
 unalias -a
@@ -25,6 +26,10 @@ unalias -a
 # ***********
 # * aliases *
 # ***********
+
+# lynx searches
+alias \?=duck
+alias \?\?=google
 
 # typing clear every time got old...
 alias c=clear
@@ -55,12 +60,14 @@ alias mv='mv -i'
 alias mkdir='mkdir -p'
 
 # these make it easier to get around
-alias rep='cd ~/Repos'
 alias une='cd ~/Unesp'
 alias des='cd ~/Desktop'
 alias dow='cd ~/Downloads'
 alias pic='cd ~/Pictures'
-alias bin='cd ~/bin'
+alias lab='cd ~/Repos/gitlab.com'
+alias hub='cd ~/Repos/github.com'
+alias dot='cd ~/Repos/gitlab.com/northernsage/dotfiles'
+alias scr='cd ~/Repos/gitlab.com/northernsage/dotfiles/scripts'
 
 
 # *******************
@@ -108,7 +115,7 @@ setprompt () {
     fi
 
 	# add current working dir
-	prompt="[\w] ${prompt}"
+	prompt="[\W] ${prompt}"
 
     # check if current directory is under vcs
 #	if [[ -d ".git" ]]; then
@@ -175,41 +182,40 @@ up() {
     cd $(eval printf '../'%.0s "{1..$1}") && pwd;
 }
 
-# automatic handling of python
-# venv activation and deactivation
-activate_venv() {
-    if [[ -d ./venv ]] ; then
-        source ./venv/bin/activate
-    fi
-}
-
 
 # **********
 # * PYTHON *
 # **********
 
+# automatic handling of python
+# venv activation and deactivation
+#activate_venv() {
+#    if [[ -d ./venv ]] ; then
+#        source ./venv/bin/activate
+#    fi
+#}
 
 # activates python venv if cd into
 # somewhere containing a "venv" dir
-function cd() {
-    builtin cd "$@"
-    if [[ -z "$VIRTUAL_ENV" ]] ; then
-        activate_venv
-    else
-        # do not deactivate in nested dirs
-        parentdir="$(dirname "$VIRTUAL_ENV")"
-        if [[ "$PWD"/ != "$parentdir"/* ]] ; then
-            deactivate
-        fi
-    fi
-}
+#function cd() {
+#    builtin cd "$@"
+#    if [[ -z "$VIRTUAL_ENV" ]] ; then
+#        activate_venv
+#    else
+#        # do not deactivate in nested dirs
+#        parentdir="$(dirname "$VIRTUAL_ENV")"
+#        if [[ "$PWD"/ != "$parentdir"/* ]] ; then
+#            deactivate
+#        fi
+#    fi
+#}
 
 # without this terminals spawned from
 # within vim will not have deactivate
 # command
-if [ ! -z "$VIM" ]; then
-    activate_venv
-fi
+#if [ ! -z "$VIM" ]; then
+#    activate_venv
+#fi
 
 
 # **********
@@ -218,7 +224,7 @@ fi
 
 
 # golang bin dir
-PATH="$HOME/go/bin:$PATH"; export PATH;
+#PATH="$HOME/go/bin:$PATH"; export PATH;
 
 
 # ********
@@ -226,7 +232,7 @@ PATH="$HOME/go/bin:$PATH"; export PATH;
 # ********
 
 
-PATH="/home/gfvante/perl5/bin${PATH:+:${PATH}}"; export PATH;
+#PATH="/home/gfvante/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/gfvante/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/gfvante/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/gfvante/perl5\""; export PERL_MB_OPT;
