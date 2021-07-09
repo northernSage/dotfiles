@@ -1,0 +1,228 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then . /etc/bashrc
+fi
+
+
+# ***********
+# * aliases *
+# ***********
+
+
+# Common variations of 'ls' command
+alias ll="ls -l"
+alias lh="ls -lh"
+alias la="ls -la"
+
+# for git commands
+alias gl='git log'
+alias gp='git push'
+alias ga='git add'
+alias gd='git diff'
+alias gb='git branch'
+alias gs='git status'
+alias gc='git commit'
+alias gco='git checkout'
+alias gsb='git show-branch'
+
+# use vim instead of vi
+alias vi=vim
+
+# prevent accidents
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+
+# these make it easier to get around
+alias rep='cd ~/Repos'
+alias une='cd ~/Unesp'
+alias des='cd ~/Desktop'
+alias dow='cd ~/Downloads'
+alias pic='cd ~/Pictures'
+alias bin='cd ~/bin'
+
+# pipe stuff into clipboard
+alias clipboard='xclip -sel clip'
+
+
+# *******************
+# * SCAPE SEQUENCES *
+# *******************
+
+
+# reset color
+NC="\[\e[m\]"
+
+# normal colors
+ANSIBLACK='\[\e[0;30m\]'
+ANSIRED='\[\e[0;31m\]'
+ANSIGREEN='\[\e[0;32m\]'
+ANSIYELLOW='\[\e[0;33m\]'
+ANSIBLUE='\[\e[0;34m\]'
+ANSIPURPLE='\[\e[0;35m\]'
+ANSICYAN='\[\e[0;36m\]'
+ANSIWHITE='\[\e[0;37m\]'
+
+# bold colors
+BANSIBLACK='\[\e[1;30m\]'
+BANSIRED='\[\e[1;31m\]'
+BANSIGREEN='\[\e[1;32m\]'
+BANSIYELLOW='\[\e[1;33m\]'
+BANSIBLUE='\[\e[1;34m\]'
+BANSIPURPLE='\[\e[1;35m\]'
+BANSICYAN='\[\e[1;36m\]'
+BANSIWHITE='\[\e[1;37m\]'
+
+# check the window size after each command and
+# update the values of LINES and COLUMNS
+shopt -s checkwinsize
+
+# set default editor
+export EDITOR=vim
+export VISUAL=vim
+
+# enable vim mode
+set -o vi
+
+# *************
+# * FUNCTIONS *
+# *************
+
+
+# sets a custom prompt string
+setprompt () {
+    # change prompt based on cmd exit status
+    if [ $? -ne 0 ]; then
+        echo "failed"
+        prompt="${BANSIRED}\$${NC}"
+    else
+        prompt="${BANSIGREEN}\$${NC}"
+    fi
+
+	# add current working dir
+	prompt="[\w] ${prompt}"
+
+    # check if current directory is under vcs
+#	if [[ -d ".git" ]]; then
+#		# add current git branch
+#        export GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD) "
+#        export GIT_ROOT="$(pwd)"
+#	else
+#        # do not deactivate in nested dirs
+#        if [[ "$PWD"/ != "$GIT_ROOT"/* ]] ; then
+#            export GIT_BRANCH=""
+#            export GIT_ROOT=""
+#        fi
+#	fi
+#
+#    prompt="${GIT_BRANCH}${prompt} "
+
+    # show env string if python virtual env is active
+	if [[ -n "$VIRTUAL_ENV" ]]; then
+        venv_name="${BANSIGREEN}($(basename "$VIRTUAL_ENV"))${NC}"
+        prompt="${venv_name} ${prompt}"
+	fi
+
+    # set PS1 env var
+	PS1="$prompt "
+}
+
+# export prompt procedure to be run before every prompt
+export PROMPT_COMMAND=setprompt
+
+# that makes extracting archives a lot faster
+extract () {
+   if [ -f "$1" ] ; then
+       case "$1" in
+           *.tar.gz)    tar xvzf "$1";;
+           *.tar.bz2)   tar xvjf "$1";;
+           *.gz)        gunzip "$1"  ;;
+           *.bz2)       bunzip2 "$1" ;;
+           *.rar)       unrar x "$1" ;;
+           *.tgz)       tar xvzf "$1";;
+           *.tar)       tar xvf "$1" ;;
+           *.zip)       unzip "$1"   ;;
+           *.tbz2)      tar xvjf "$1";;
+           *.Z)         uncompress "$1"  ;;
+           *.7z)        7z x $1;;
+           *) echo "could not extract such file format '$1'..." ;;
+       esac
+   else
+       echo "'$1' is not a valid file!"
+   fi
+}
+
+# Creates an archive (*.tar.gz) from given directory.
+function maketar() {
+    tar cvzf "${1%%/}.tar.gz"  "${1%%/}/";
+}
+
+# Create a ZIP archive of a file or folder.
+function makezip() {
+    zip -r "${1%%/}.zip" "$1" ;
+}
+
+# very convenient alternative to cd ../../..(...)
+up() {
+    cd $(eval printf '../'%.0s "{1..$1}") && pwd;
+}
+
+# automatic handling of python
+# venv activation and deactivation
+activate_venv() {
+    if [[ -d ./venv ]] ; then
+        source ./venv/bin/activate
+    fi
+}
+
+
+# **********
+# * PYTHON *
+# **********
+
+
+# activates python venv if cd into
+# somewhere containing a "venv" dir
+function cd() {
+    builtin cd "$@"
+    if [[ -z "$VIRTUAL_ENV" ]] ; then
+        activate_venv
+    else
+        # do not deactivate in nested dirs
+        parentdir="$(dirname "$VIRTUAL_ENV")"
+        if [[ "$PWD"/ != "$parentdir"/* ]] ; then
+            deactivate
+        fi
+    fi
+}
+
+# without this terminals spawned from
+# within vim will not have deactivate
+# command
+if [ ! -z "$VIM" ]; then
+    activate_venv
+fi
+
+
+# **********
+# * GOLANG *
+# **********
+
+
+# golang bin dir
+PATH="$HOME/go/bin:$PATH"; export PATH;
+
+
+# ********
+# * PERL *
+# ********
+
+
+PATH="/home/gfvante/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/gfvante/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/gfvante/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/gfvante/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/gfvante/perl5"; export PERL_MM_OPT;
+
