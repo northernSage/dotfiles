@@ -43,18 +43,12 @@ bind -r l select-pane -R
 set -g repeat-time 200
 
 # colors, clock, and stuff
-#set -g default-terminal "xterm-256color" # works, but oh so wrong
-#set -ga terminal-overrides ",xterm-256color*:Tc"
 set -g default-terminal "screen-256color"
-#set -g clock-mode-style 12
 setw -g clock-mode-colour cyan
 set -g base-index 1
 setw -g pane-base-index 1
 
-# die, die, die (just be careful, right next to C-c)
-
 # color the pane borders nearly invisible
-# (when not using hacked tmux without them)
 set -g pane-border-style "fg=#111111"
 set -g pane-active-border-style "fg=#111111"
 
@@ -73,18 +67,6 @@ set -g status-justify left
 set -g status-style "fg=cyan"
 set -g status-left ""
 set -g status-right ""
-
-#set -g status-left-length 78
-#set -g status-left-style "fg=#928374,bold,reverse"
-#set -g status-left-style "fg=#928374"
-#set -g status-left-style "fg=brightwhite"
-#set -g status-left "#(head -1 ~/.status) "
-#set -g status-right-length 50
-#set -g status-right "%A, %B %-e, %Y, %-l:%M:%S%p %Z%0z"
-#set -g status-right-style "fg=#928374,bold"
-#set -g window-status-format ""
-#set -g window-status-current-format ""
-
 set -g message-style "fg=cyan"
 
 # disable status

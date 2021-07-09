@@ -187,6 +187,7 @@ up() {
 # * PYTHON *
 # **********
 
+
 # automatic handling of python
 # venv activation and deactivation
 #activate_venv() {
@@ -218,22 +219,12 @@ up() {
 #fi
 
 
-# **********
-# * GOLANG *
-# **********
-
-
-# golang bin dir
-#PATH="$HOME/go/bin:$PATH"; export PATH;
-
-
 # ********
 # * PERL *
 # ********
 
 
-#PATH="/home/gfvante/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/gfvante/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/gfvante/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/gfvante/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/gfvante/perl5"; export PERL_MM_OPT;
+PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=$HOME/perl5"; export PERL_MM_OPT;
