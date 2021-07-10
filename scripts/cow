@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ -z "$(which cowsay)" ]; then
+  echo cowsay is not installed.
+  exit 1
+fi
+
+cowfiles="$(cowsay -l | grep -v :)"
+
+while :; do
+    for val in $cowfiles; do
+        clear
+        cowsay -f "$val" "$(date +%D)"
+        sleep 10
+    done
+done
