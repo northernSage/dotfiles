@@ -26,5 +26,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 cd ~/.vim/bundle/YouCompleteMe || exit
 python3 install.py --all
 
+touch notebook
+
 chmod +x "$PWD/configure"
 /bin/bash "$PWD/configure"
