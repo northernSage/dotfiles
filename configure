@@ -8,3 +8,6 @@ ls -l ~/.vimrc
 
 ln -sf "$PWD/tmuxconfig" ~/.tmux.conf
 ls -l ~/.tmux.conf
+
+ln -sf "$PWD/notebook" ~/.notebook
+ls -l ~/.notebook
