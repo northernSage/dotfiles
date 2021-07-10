@@ -27,6 +27,12 @@ unalias -a
 # * aliases *
 # ***********
 
+# todo list and notes
+alias note='vim $HOME/.notebook'
+
+# got to sleep
+alias afk='systemctl suspend'
+
 # lynx searches
 alias \?=duck
 alias \?\?=google
