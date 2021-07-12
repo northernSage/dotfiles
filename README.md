@@ -1,7 +1,6 @@
 # Dotfiles
 
-Centralized configuration files and utilitary bash scripts for vim, tmux,
-lynx combo.
+Configuration files and utilitary bash scripts around vim, tmux and lynx.
 
 The idea is not to stray far from the native defaults offered in most unix
 systems for these tools. For that, having a *fat* `vimrc` file is avoided
@@ -12,6 +11,7 @@ bash.
 
 ## Installation
 
-To install and configure use the provided `isntall` and `setup` scripts.
-To install lynx, use its respective `setup` script inside the `lynx`
-directory.
+To install and configure use the provided instalation scripts inside the
+`install` directory and configure with the `configure` script.
+
+For lynx, use its respective `setup` script inside `lynxconfig`

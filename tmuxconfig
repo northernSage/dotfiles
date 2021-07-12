@@ -9,7 +9,11 @@ bind-key -n C-y send-prefix
 # add double-tap meta key to toggle last window
 bind-key C-a last-window
 
-# pane colors and display
+
+# *************************
+# pane colors and display *
+# *************************
+
 
 # create more intuitive split key combos (same as modern screen)
 unbind |

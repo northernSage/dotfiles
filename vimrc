@@ -18,10 +18,7 @@ Plugin 'gmarik/Vundle.vim'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 
-Plugin 'vimsence/vimsence'
 Plugin 'dense-analysis/ale'
-Plugin 'rdnetto/YCM-Generator'
-Bundle 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -75,30 +72,6 @@ set pastetoggle=<F3> " enable paste mode
 " TODO: install fixers and linters for python and C
 " enable fixing with black and some C fixer..
 "let g:ale_fixers = ['prettier', 'eslint']
-
-
-" *******
-" * YCM *
-" *******
-
-
-"python with virtualenv support for YCM
-py3 << EOF
-import os
-import sys
-import subprocess
-if 'VIRTUAL_ENV' in os.environ:
-  script = os.path.join(os.environ['VIRTUAL_ENV'], 'bin', 'activate')
-  pipe = subprocess.Popen(f". {script}; env -0", stdout=subprocess.PIPE, shell=True)
-  output = pipe.communicate()[0].decode('utf8')
-  env = dict((line.split("=", 1) for line in output.split('\x00') if line))
-  os.environ.update(env)
-EOF
-
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-let g:ycm_auto_hover = 1
-let g:ycm_max_num_candidates = 20
-let g:ycm_autoclose_preview_window_after_insertion = 1
 
 
 " *******************
