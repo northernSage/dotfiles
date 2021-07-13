@@ -17,7 +17,7 @@ set -o vi
 
 # add user scripts to path
 DOTFILES=$HOME/Repos/gitlab.com/northernsage/dotfiles
-export PATH=$DOTFILES/lynx:$DOTFILES/scripts:$PATH
+export PATH=$DOTFILES/lynxconfig:$DOTFILES/scripts:$PATH
 
 # reset aliases
 unalias -a
