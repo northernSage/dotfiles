@@ -1,28 +1,30 @@
-" **********
-" * Vundle *
-" **********
+" ***********
+" * Plugins *
+" ***********
 
-set nocompatible              " required
-filetype off                  " required
+" Automatic installation of plugins
+"   this makes things much easier when working
+"   in remote systems, just need to push .vimrc
+"   using scp and all plugins will be installed
+"   the next times vim is executed
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" specify a directory for plugins
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Make sure you use single quotes
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plug 'gmarik/Vundle.vim'
+Plug 'dense-analysis/ale'
 
-" add all your plugins here (note older versions of Vundle
-" used Bundle instead of Plugin)
-
-Plugin 'dense-analysis/ale'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" Initialize plugin system
+call plug#end()
 
 
 " *************
@@ -86,7 +88,6 @@ set shiftwidth=4
 set textwidth=73
 set softtabstop=4
 set encoding=utf-8 " utf support
-set fileformat=unix " specify file formats
 
 " python
 autocmd FileType py setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4

@@ -105,51 +105,24 @@ BANSICYAN='\[\e[1;36m\]'
 BANSIWHITE='\[\e[1;37m\]'
 
 
+# **********
+# * PROMPT *
+# ***********
+
+
+# set PS1 env var
+#export PS1='$(~/bin/bash_prompt)' <~~~to be done
+export PS1="\u${BANSIGREEN}@${NC}\W: \\$ "
+
+# alacritty bug
+export PROMPT_COMMAND=''
+
+
 # *************
 # * FUNCTIONS *
 # *************
 
 
-# sets a custom prompt string
-setprompt () {
-    # change prompt based on cmd exit status
-    if [ $? -ne 0 ]; then
-        echo "failed"
-        prompt="${BANSIRED}\$${NC}"
-    else
-        prompt="${BANSIGREEN}\$${NC}"
-    fi
-
-	# add current working dir
-	prompt="\u@\W:~ ${prompt}"
-
-    # check if current directory is under vcs
-#	if [[ -d ".git" ]]; then
-#		# add current git branch
-#        export GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD) "
-#        export GIT_ROOT="$(pwd)"
-#	else
-#        # do not deactivate in nested dirs
-#        if [[ "$PWD"/ != "$GIT_ROOT"/* ]] ; then
-#            export GIT_BRANCH=""
-#            export GIT_ROOT=""
-#        fi
-#	fi
-#
-#    prompt="${GIT_BRANCH}${prompt} "
-
-    # show env string if python virtual env is active
-	if [[ -n "$VIRTUAL_ENV" ]]; then
-        venv_name="${BANSIGREEN}($(basename "$VIRTUAL_ENV"))${NC}"
-        prompt="${venv_name} ${prompt}"
-	fi
-
-    # set PS1 env var
-	PS1="$prompt "
-}
-
-# export prompt procedure to be run before every prompt
-export PROMPT_COMMAND=setprompt
 
 # that makes extracting archives a lot faster
 extract () {
@@ -187,42 +160,6 @@ function makezip() {
 up() {
     cd $(eval printf '../'%.0s "{1..$1}") && pwd;
 }
-
-
-# **********
-# * PYTHON *
-# **********
-
-
-# automatic handling of python
-# venv activation and deactivation
-#activate_venv() {
-#    if [[ -d ./venv ]] ; then
-#        source ./venv/bin/activate
-#    fi
-#}
-
-# activates python venv if cd into
-# somewhere containing a "venv" dir
-#function cd() {
-#    builtin cd "$@"
-#    if [[ -z "$VIRTUAL_ENV" ]] ; then
-#        activate_venv
-#    else
-#        # do not deactivate in nested dirs
-#        parentdir="$(dirname "$VIRTUAL_ENV")"
-#        if [[ "$PWD"/ != "$parentdir"/* ]] ; then
-#            deactivate
-#        fi
-#    fi
-#}
-
-# without this terminals spawned from
-# within vim will not have deactivate
-# command
-#if [ ! -z "$VIM" ]; then
-#    activate_venv
-#fi
 
 
 # ********
