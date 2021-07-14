@@ -121,7 +121,7 @@ setprompt () {
     fi
 
 	# add current working dir
-	prompt="[\W] ${prompt}"
+	prompt="\u@\W:~ ${prompt}"
 
     # check if current directory is under vcs
 #	if [[ -d ".git" ]]; then
