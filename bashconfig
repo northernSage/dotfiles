@@ -112,7 +112,7 @@ BANSIWHITE='\[\e[1;37m\]'
 
 # set PS1 env var
 #export PS1='$(~/bin/bash_prompt)' <~~~to be done
-export PS1="\u${BANSIGREEN}@${NC}\W: \\$ "
+export PS1="\u${BANSIGREEN}@${NC}\H:\W\\$ "
 
 # alacritty bug
 export PROMPT_COMMAND=''
