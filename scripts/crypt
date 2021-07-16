@@ -1,0 +1,7 @@
+#!/bin/bash
+
+RECIP=gfvante@pm.me
+DATE=$(date +'%d-%B')
+OUT="$(basename "$1")-$DATE.tar.gz.gpg"
+tar -cvzhf - "$1" | gpg -e -r $RECIP > "$OUT"
+echo "$OUT"

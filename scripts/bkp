@@ -1,8 +1,10 @@
 #!/bin/bash
 
-SRC=~/doboxsync/
-DSTRMT=homesync
+DSTRMT=backup
 DSTLOCAL=/run/media/gfvante/backup
 
-rsync -aLvz $SRC dobox:~/$DSTRMT
-rsync -aLvz $SRC $DSTLOCAL
+ENCRYPTED=$(crypt "$1")
+chmod 700 "$ENCRYPTED"
+rsync -aLvz "$ENCRYPTED" dobox:~/$DSTRMT
+rsync -aLvz "$ENCRYPTED" $DSTLOCAL
+rm "$ENCRYPTED"
