@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DSTRMT=backup
+ENCRYPTED=$(crypt "$1")
+chmod 700 "$ENCRYPTED"
+rsync -aLvz "$ENCRYPTED" dobox:~/$DSTRMT
+rm "$ENCRYPTED"

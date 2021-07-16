@@ -31,7 +31,7 @@ unalias -a
 alias note='vim $HOME/.notebook'
 
 # got to sleep
-alias afk='systemctl suspend'
+alias afk='systemctl suspend -i'
 
 # lynx searches
 alias \?=duck
