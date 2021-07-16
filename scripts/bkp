@@ -1,0 +1,8 @@
+#!/bin/bash
+
+SRC=~/doboxsync/
+DSTRMT=homesync
+DSTLOCAL=/run/media/gfvante/backup
+
+rsync -aLvz $SRC dobox:~/$DSTRMT
+rsync -aLvz $SRC $DSTLOCAL
