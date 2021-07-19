@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+  then
+    echo "must provide a project name"
+fi
+
+git init
+git add -A
+git commit -m "initial commit"
+git push --set-upstream git@gitlab.com:_northernsage/"$1".git master
