@@ -3,9 +3,11 @@
 if [ $# -eq 0 ]
   then
     echo "must provide a project name"
+    exit
 fi
 
 git init
 git add -A
 git commit -m "initial commit"
-git push --set-upstream git@gitlab.com:_northernsage/"$1".git master
+git remote add origin git@gitlab.com:_northernsage/"$1".git
+git push --set-upstream origin master
