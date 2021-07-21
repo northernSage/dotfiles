@@ -1,7 +1,9 @@
 #!/bin/bash
 
-DSTLOCAL=/run/media/gfvante/backup
-ENCRYPTED=$(crypt "$1")
-chmod 700 "$ENCRYPTED"
-rsync -aLvz "$ENCRYPTED" $DSTLOCAL
-rm "$ENCRYPTED"
+if ! [ $# -eq 2 ]
+  then
+    echo "must provide source and destination"
+    exit
+fi
+
+rsync -aLvz "$1" "$2"

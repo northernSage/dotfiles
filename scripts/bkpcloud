@@ -1,7 +1,15 @@
 #!/bin/bash
 
-DSTRMT=backup
+# since files will sit on offsite server
+# we encrypt everything for safety
+
+if ! [ $# -eq 2 ]
+  then
+    echo "must provide source and destination"
+    exit
+fi
+
 ENCRYPTED=$(crypt "$1")
 chmod 700 "$ENCRYPTED"
-rsync -aLvz "$ENCRYPTED" dobox:~/$DSTRMT
+rsync -aLvz "$ENCRYPTED" "$2"
 rm "$ENCRYPTED"
