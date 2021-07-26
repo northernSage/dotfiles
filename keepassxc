@@ -1,4 +1,4 @@
 #!/bin/bash
 
 sudo dnf update
-sud dnf install hexchat -y
+sudo dnf install keepassxc
