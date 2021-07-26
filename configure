@@ -6,13 +6,12 @@ ls -l ~/.bash_aliases
 ln -sf "$PWD/vimrc" ~/.vimrc
 ls -l ~/.vimrc
 
+ln -sf "$PWD/dircolors" ~/.dircolors
+ls -l ~/.dircolors
+
 touch notebook
 ln -sf "$PWD/notebook" ~/.notebook
 ls -l ~/.notebook
 
-if type tmux; then
-  ln -sf "$PWD/tmuxconfig" ~/.tmux.conf
-  ls -l ~/.tmux.conf
-else
-  echo  "TMUX isn't installed. Skipping."
-fi
+ln -sf "$PWD/tmuxconfig" ~/.tmux.conf
+ls -l ~/.tmux.conf

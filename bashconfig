@@ -23,6 +23,19 @@ export PATH=$DOTFILES/lynxconfig:$DOTFILES/scripts:$PATH
 unalias -a
 
 
+# *************
+# * DIRCOLORS *
+# *************
+
+if command -v dircolors &>/dev/null; then
+  if test -r ~/.dircolors; then
+    eval "$(dircolors -b ~/.dircolors)"
+  else
+    eval "$(dircolors -b)"
+  fi
+fi
+
+
 # ***********
 # * ALIASES *
 # ***********
