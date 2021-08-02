@@ -73,7 +73,7 @@ set pastetoggle=<F3> " enable paste mode
 
 " TODO: install fixers and linters for python and C
 " enable fixing with black and some C fixer..
-"let g:ale_fixers = ['prettier', 'eslint']
+" let g:ale_fixers = ['prettier', 'eslint']
 
 
 " *******************
