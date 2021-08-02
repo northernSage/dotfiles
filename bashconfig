@@ -89,6 +89,9 @@ alias hub='cd ~/Repos/github.com'
 alias dot='cd ~/Repos/gitlab.com/northernsage/dotfiles'
 alias scr='cd ~/Repos/gitlab.com/northernsage/dotfiles/scripts'
 
+# pdf viewer
+alias pdf='mupdf -r 160 -I'
+
 
 # *******************
 # * SCAPE SEQUENCES *
