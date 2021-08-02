@@ -15,7 +15,7 @@ export VISUAL=vim
 # enable vim mode
 set -o vi
 
-# add user scripts to path
+# add user scripts and lynx config to path
 DOTFILES=$HOME/Repos/gitlab.com/northernsage/dotfiles
 export PATH=$DOTFILES/lynxconfig:$DOTFILES/scripts:$PATH
 
@@ -139,7 +139,13 @@ export PROMPT_COMMAND=''
 # * FUNCTIONS *
 # *************
 
-
+# we now have a trashbin
+TRASH=$HOME/.trash
+trash () {
+    [[ -z "$TRASH" ]] && return 1;
+    mkdir -p "$TRASH";
+    mv "$*" "$TRASH";
+}
 
 # that makes extracting archives a lot faster
 extract () {
