@@ -213,7 +213,7 @@ sub add_castle {
 		shape		=> $castle_image,
 		color		=> $castle_mask,
 		position	=> [ $anim->width()-32, $anim->height()-13, $depth{'castle'} ],
-		default_color	=> 'WHITE',
+		default_color	=> 'CYAN',
 	);
 }
 
@@ -311,7 +311,7 @@ q{
        \
      ...\..,
 \  /'       \
- >=     (  ' >
+ >= ganja(  ' >
 /  \      / /
     `"'"'/''
 },
@@ -1471,7 +1471,6 @@ sub initialize {
 		$SIG{$sig} = 'sighandler' unless(defined($SIG{$sig}));
 	}
 }
-
 
 sub center {
 	my ($width, $mesg) = @_;
