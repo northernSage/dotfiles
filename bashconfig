@@ -75,10 +75,10 @@ alias gsb='git show-branch'
 # use vim instead of vi
 alias vi=vim
 
-# prevent accidents
+# prevent accidents (but makes scripting harder)
 alias rm='rm -i'
 alias cp='cp -i'
-alias mv='mv -i'
+alias mv='mv -n'
 alias mkdir='mkdir -p'
 
 # these make it easier to get around
