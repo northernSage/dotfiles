@@ -7,13 +7,15 @@ fi
 # check the window size after each command and
 # update the values of LINES and COLUMNS
 shopt -s checkwinsize
+# enable vim mode
+set -o vi
+# noclobber
+set -o noclobber
 
 # set default editor
 export EDITOR=vim
 export VISUAL=vim
 
-# enable vim mode
-set -o vi
 
 # add user scripts and lynx config to path
 DOTFILES=$HOME/Repos/gitlab.com/northernsage/dotfiles
