@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ln -sf "$PWD/bashconfigwsl" ~/.bashrc
+ln -sf "$PWD/bashconfigmacos" ~/.bashrc
 ls -l ~/.bashrc
 
 DOTFILES="$(dirname "$PWD")"
