@@ -124,3 +124,6 @@ export NVM_DIR="$HOME/.nvm"
 # add scripts directory to path
 DOTFILES=$HOME/Github/devenv/dotfiles
 export PATH=$DOTFILES/macos/scripts:$PATH
+
+# for the lasta time, I do not want to use zash.
+export BASH_SILENCE_DEPRECATION_WARNING=1
