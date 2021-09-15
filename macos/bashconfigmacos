@@ -38,14 +38,19 @@ fi
 # typing clear every time got old...
 alias c=clear
 
-# enable colors
-alias ls='ls --color=always'
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # Make all GNU flavor commands available, may override same-name BSD flavor commands for x86 Mac
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+  export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+fi
+
+# enable colors for freebs ls and gnu ls
+alias ls="ls --color=always"
 
 # Common variations of 'ls' command
 alias ll="ls -l"
 alias lh="ls -lh"
 alias la="ls -la"
-alias ls="ls -FGH"
 
 # for git commands
 alias gl='git log'
