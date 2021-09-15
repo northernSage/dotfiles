@@ -1,8 +1,9 @@
 #!/bin/bash
 
+DOTFILES="$(dirname "$PWD")"
+
 ln -sf "$PWD/bashconfigmacos" ~/.bashrc
 ls -l ~/.bashrc
 
-DOTFILES="$(dirname "$PWD")"
 ln -sf "$DOTFILES/dircolors" ~/.dircolors
 ls -l ~/.dircolors

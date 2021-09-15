@@ -1,0 +1,14 @@
+#!/bin/bash
+
+ln -sf "$PWD/vimrc" ~/.vimrc
+ls -l ~/.vimrc
+
+ln -sf "$PWD/dircolors" ~/.dircolors
+ls -l ~/.dircolors
+
+touch notebook
+ln -sf "$PWD/notebook" ~/.notebook
+ls -l ~/.notebook
+
+ln -sf "$PWD/tmuxconfig" ~/.tmux.conf
+ls -l ~/.tmux.conf

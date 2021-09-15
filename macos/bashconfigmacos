@@ -4,12 +4,13 @@
 if [ -f /etc/bashrc ]; then . /etc/bashrc
 fi
 
-# pyenc terminal integration requirement
-eval "$(pyenv init -)"
+# pyenv terminal integration requirement
+if command -v pyenv &>/dev/null ; then
+  eval "$(pyenv init -)"
+fi
 
 # check the window size after each command and
-# update the values of LINES and COLUMNS
-shopt -s checkwinsize
+# update the values of LINES and COLUMNS shopt -s checkwinsize
 # enable vim mode
 set -o vi
 # noclobber
@@ -37,6 +38,9 @@ fi
 # typing clear every time got old...
 alias c=clear
 
+# enable colors
+alias ls='ls --color=always'
+
 # Common variations of 'ls' command
 alias ll="ls -l"
 alias lh="ls -lh"
@@ -62,18 +66,19 @@ alias mkdir='mkdir -p'
 
 # these make it easier to get around
 alias une='cd ~/unesp'
-#alias dow='cd ~/downloads'
-#alias pic='cd ~/pictures'
-#alias lab='cd ~/Repos/gitlab.com'
-alias hub='cd ~/github/'
-alias dot='cd ~/github/dotfiles'
+alias cbb='cd ~/Github/cbb'
+alias dow='cd ~/downloads'
+alias des='cd ~/desktop'
+alias pic='cd ~/pictures'
+alias hub='cd ~/Github/'
+alias dot='cd ~/Github/devenv/dotfiles'
 
 # **********
 # * PROMPT *
 # ***********
 
 # Prompt
-export PS1="\[\e[1;34m\]\w\[\e[m\] \\$ "
+export PS1="\h \[\e[1;34m\]\w\[\e[m\] \\$ "
 
 # *************
 # * FUNCTIONS *

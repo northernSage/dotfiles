@@ -9,11 +9,9 @@ bind-key -n C-y send-prefix
 # add double-tap meta key to toggle last window
 bind-key C-a last-window
 
-
 # *************************
 # pane colors and display *
 # *************************
-
 
 # create more intuitive split key combos (same as modern screen)
 unbind |
@@ -76,3 +74,6 @@ set -g message-style "fg=cyan"
 # disable status
 #set -g status off
 set -g status on
+
+# easy way to clear current pane
+bind-key -n C-p send-keys -R

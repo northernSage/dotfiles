@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh docbb cat /home/cbb/docker-compose-log.txt

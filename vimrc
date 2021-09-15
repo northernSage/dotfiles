@@ -18,10 +18,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
-
-" let Vundle manage Vundle, required
-Plug 'gmarik/Vundle.vim'
 Plug 'dense-analysis/ale'
+Plug 'morhetz/gruvbox'
 
 " Initialize plugin system
 call plug#end()
@@ -31,11 +29,30 @@ call plug#end()
 " * BEHAVIOUR *
 " *************
 
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
 
 " disable backup files
 set nobackup
 set noswapfile
 set nowritebackup
+
+" more powerfull backspace
+set backspace=indent,eol,start
 
 set icon " icon
 set ruler " Show file stats
@@ -43,7 +60,9 @@ set number " enable line numbers
 set autoindent " turn on autoident
 set nohlsearch " remove search highlight
 
-syntax on " enable syntax highlight
+" enable syntax highlight and theme
+syntax on
+colorscheme gruvbox
 
 " enable folding
 set foldmethod=indent
@@ -62,14 +81,12 @@ au bufnewfile,bufRead bashconfig set filetype=sh
 " * FUNCTION KEYS *
 " *****************
 
-
 set pastetoggle=<F3> " enable paste mode
 
 
 " *******
 " * ALE *
 " *******
-
 
 " TODO: install fixers and linters for python and C
 " enable fixing with black and some C fixer..
@@ -80,13 +97,8 @@ set pastetoggle=<F3> " enable paste mode
 " * FILE FORMATTING *
 " *******************
 
-
 " global
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set textwidth=73
-set softtabstop=4
+set textwidth=80
 set encoding=utf-8 " utf support
 
 " python
@@ -94,6 +106,10 @@ autocmd FileType py setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
 
 " C family
 autocmd FileType c,h,cpp,hpp setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
+
+" js and config files
+autocmd FileType javascript,yml,yaml,conf setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
+
 "let g:syntastic_c_include_dirs = ['include', '../include']
 
 " flag unnecessary whitespace
