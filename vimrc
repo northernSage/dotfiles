@@ -45,7 +45,6 @@ if (empty($TMUX))
   endif
 endif
 
-
 " disable backup files
 set nobackup
 set noswapfile
@@ -102,7 +101,7 @@ set textwidth=80
 set encoding=utf-8 " utf support
 
 " python
-autocmd FileType py setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType py,sh setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
 
 " C family
 autocmd FileType c,h,cpp,hpp setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2

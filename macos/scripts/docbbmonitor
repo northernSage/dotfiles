@@ -1,0 +1,10 @@
+#!/bin/bash
+
+COMMANDS=$HOME/Github/devenv/dotfiles/macos/scripts
+
+while  :
+do
+    report=$(ssh docbb 'bash -s' < "$COMMANDS"/sysinfo)
+    echo "$report" > /tmp/out.html 2>&1
+    sleep 10
+done
