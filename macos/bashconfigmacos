@@ -78,6 +78,7 @@ alias dow='cd ~/downloads'
 alias des='cd ~/desktop'
 alias pic='cd ~/pictures'
 alias hub='cd ~/Github/'
+alias shh='cd ~/Github/devenv/ssh'
 alias dot='cd ~/Github/devenv/dotfiles'
 
 # **********
