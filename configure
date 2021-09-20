@@ -1,14 +1,18 @@
 #!/bin/bash
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    ln -sf "$PWD/macos/bashconfigmacos" ~/.bashrc
+    ls -l ~/.bashrc
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    ln -sf "$PWD/linux/bashconfiglinux" ~/.bashrc
+    ls -l ~/.bashrc
+fi
+
 ln -sf "$PWD/vimrc" ~/.vimrc
 ls -l ~/.vimrc
 
 ln -sf "$PWD/dircolors" ~/.dircolors
 ls -l ~/.dircolors
-
-touch notebook
-ln -sf "$PWD/notebook" ~/.notebook
-ls -l ~/.notebook
 
 ln -sf "$PWD/tmuxconfig" ~/.tmux.conf
 ls -l ~/.tmux.conf

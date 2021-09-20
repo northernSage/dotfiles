@@ -1,8 +1,0 @@
-#!/bin/bash
-
-ln -sf "$PWD/bashconfigwsl" ~/.bashrc
-ls -l ~/.bashrc
-
-DOTFILES="$(dirname "$PWD")"
-ln -sf "$DOTFILES/dircolors" ~/.dircolors
-ls -l ~/.dircolors
