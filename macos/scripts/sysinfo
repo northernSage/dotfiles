@@ -58,8 +58,8 @@ usage () {
 
 # process command line options
 
-interactive=
-filename=
+# interactive=
+# filename=
 
 #while  [[ -n "$1" ]]; do
 #	case "$1" in
