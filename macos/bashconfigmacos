@@ -9,15 +9,11 @@ if command -v pyenv &>/dev/null ; then
   eval "$(pyenv init -)"
 fi
 
-# check the window size after each command and
-# update the values of LINES and COLUMNS shopt -s checkwinsize
 # enable vim mode
 set -o vi
+
 # noclobber
 set -o noclobber
-
-# reset aliases
-unalias -a
 
 # *************
 # * DIRCOLORS *
@@ -35,6 +31,9 @@ fi
 # * ALIASES *
 # ***********
 
+# reset aliases
+unalias -a
+
 # typing clear every time got old...
 alias c=clear
 
@@ -43,6 +42,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
   export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
 fi
+
+# personal notes file
+alias note="vim ~/.notebook"
 
 # enable colors for freebs ls and gnu ls
 alias ls="ls --color=always"
