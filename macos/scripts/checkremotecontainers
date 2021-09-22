@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if [ $# -eq 0 ]; then
-      echo "must provide ssh remote name to connect to"
-fi
-
-ssh "$1" 'docker ps -as --format "table {{.Image}}\t{{.Networks}}\t{{.Status}}\t{{.Size}}\t{{.RunningFor}}\t{{.Ports}}"'
