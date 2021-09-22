@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Pulls down the external IP address used by this system or local area
 # network in a safe, reliable way. Consider avoiding alternatives using
@@ -11,4 +11,4 @@
 # warning: this probably won't work with ipv6
 
 #dig +short myip.opendns.com @resolver1.opendns.com
-dig myip.opendns.com @resolver1.opendns.com
+curl ipinfo.io/ip
