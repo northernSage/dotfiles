@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ $# -eq 0 ]
+  then
+    echo "must provide repository url on github"
+fi
+
+git init -b main
+git remote add origin $1 
+git pull origin main
+git add .
+git commit -m "first commit"
+git push --set-upstream origin main
