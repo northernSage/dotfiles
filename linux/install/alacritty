@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo dnf update
-sudo dnf install alacritty -y
+sudo apt-get update
+sudo apt-get install alacritty -y

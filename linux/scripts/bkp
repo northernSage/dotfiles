@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd $HOME/Github/devenv/ssh
+git add -A
+git commit -m "backup $(date)"
+git push
+
+cd $HOME/Github/devenv/dotfiles
+git add -A
+git commit -m "backup $(date)"
+git push
+
+echo "Done!"

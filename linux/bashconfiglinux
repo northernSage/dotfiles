@@ -7,8 +7,10 @@ fi
 # check the window size after each command and
 # update the values of LINES and COLUMNS
 shopt -s checkwinsize
+
 # enable vim mode
 set -o vi
+
 # noclobber
 set -o noclobber
 
@@ -17,13 +19,14 @@ export EDITOR=vim
 export VISUAL=vim
 
 
-# add user scripts and lynx config to path
-DOTFILES=$HOME/Repos/gitlab.com/northernsage/dotfiles
-export PATH=$DOTFILES/lynxconfig:$DOTFILES/scripts:$PATH
+# add user scripts lynx config  and cargo binaries to path
+CARGOBIN=/home/gfvante/.cargo/bin
+
+DOTFILES=$HOME/repos/github.com/northernSage/dotfiles
+export PATH=$DOTFILES/linux/lynxconfig:$DOTFILES/linux/scripts:$CARGOBIN:$PATH
 
 # reset aliases
 unalias -a
-
 
 # *************
 # * DIRCOLORS *
@@ -86,14 +89,13 @@ alias une='cd ~/Unesp'
 alias des='cd ~/Desktop'
 alias dow='cd ~/Downloads'
 alias pic='cd ~/Pictures'
-alias lab='cd ~/Repos/gitlab.com'
-alias hub='cd ~/Repos/github.com'
-alias dot='cd ~/Repos/gitlab.com/northernsage/dotfiles'
-alias scr='cd ~/Repos/gitlab.com/northernsage/dotfiles/scripts'
+alias hub='cd ~/repos/github.com'
+alias shh='cd ~/repos/github.com/northernSage/ssh'
+alias dot='cd ~/repos/github.com/northernSage/dotfiles'
+alias scr='cd ~/repos/github.com/northernSage/dotfiles/scripts'
 
 # pdf viewer
 alias pdf='mupdf -r 160 -I'
-
 
 # *******************
 # * SCAPE SEQUENCES *
@@ -123,19 +125,12 @@ BANSIPURPLE='\[\e[1;35m\]'
 BANSICYAN='\[\e[1;36m\]'
 BANSIWHITE='\[\e[1;37m\]'
 
-
 # **********
 # * PROMPT *
-# ***********
-
+# **********
 
 # set PS1 env var
-#export PS1='$(~/bin/bash_prompt)' <~~~to be done
 export PS1="\u${BANSIGREEN}@${NC}\H:\W\\$ "
-
-# alacritty bug
-export PROMPT_COMMAND=''
-
 
 # *************
 # * FUNCTIONS *

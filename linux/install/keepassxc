@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo dnf update
-sudo dnf install keepassxc
+sudo apt-get update
+sudo apt-get install keepassxc

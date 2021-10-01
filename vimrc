@@ -45,6 +45,11 @@ if (empty($TMUX))
   endif
 endif
 
+" colorscheme
+set t_Co=256
+set background=dark
+colorscheme gruvbox
+
 " disable backup files
 set nobackup
 set noswapfile
@@ -61,7 +66,6 @@ set nohlsearch " remove search highlight
 
 " enable syntax highlight and theme
 syntax on
-colorscheme gruvbox
 
 " enable folding
 set foldmethod=indent

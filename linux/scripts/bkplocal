@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if ! [ $# -eq 2 ]
-  then
-    echo "must provide source and destination"
-    exit
-fi
-
-rsync -aLvz "$1" "$2"
