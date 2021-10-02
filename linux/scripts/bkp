@@ -1,11 +1,11 @@
 #!/bin/bash
 
-cd $HOME/Github/devenv/ssh
+cd $HOME/repos/github.com/northernSage/ssh
 git add -A
 git commit -m "backup $(date)"
 git push
 
-cd $HOME/Github/devenv/dotfiles
+cd $HOME/repos/github.com/northernSage/dotfiles
 git add -A
 git commit -m "backup $(date)"
 git push
