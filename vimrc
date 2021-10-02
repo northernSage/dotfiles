@@ -46,9 +46,9 @@ if (empty($TMUX))
 endif
 
 " colorscheme
+colorscheme gruvbox
 set t_Co=256
 set background=dark
-colorscheme gruvbox
 
 " disable backup files
 set nobackup
