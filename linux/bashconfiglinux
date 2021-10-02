@@ -18,11 +18,20 @@ set -o noclobber
 export EDITOR=vim
 export VISUAL=vim
 
-# add user scripts lynx config  and cargo binaries to path
-CARGOBIN=/home/gfvante/.cargo/bin
+# ********
+# * PATH *
+# ********
 
+# add user scripts lynx config to path
 DOTFILES=$HOME/repos/github.com/northernSage/dotfiles
-export PATH=$DOTFILES/linux/lynxconfig:$DOTFILES/linux/scripts:$CARGOBIN:$PATH
+export PATH=$DOTFILES/linux/lynxconfig:$DOTFILES/linux/scripts:$PATH
+
+# cargo bin dir
+CARGOBIN=/home/gfvante/.cargo/bin
+export PATH=$CARGOBIN:$PATH
+
+# yarn bin dir
+export PATH="$HOME/.yarn/bin:$PATH"
 
 # reset aliases
 unalias -a
@@ -45,11 +54,6 @@ fi
 
 # source $PWD/../themes/grouvboxpallet.sh
 
-# ************
-# * YARN BIN *
-# ************
-
-export PATH="$(yarn global bin):$PATH"
 
 # ***********
 # * ALIASES *

@@ -112,7 +112,7 @@ autocmd FileType py,sh setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
 autocmd FileType c,h,cpp,hpp setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 " js and config files
-autocmd FileType javascript,yml,yaml,conf setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType javascript,yml,yaml,conf,json setlocal expandtab shiftwidth=2 softtabstop=2 tabstop=2
 
 "let g:syntastic_c_include_dirs = ['include', '../include']
 
