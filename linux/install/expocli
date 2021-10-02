@@ -1,0 +1,4 @@
+#!/bin/bash
+
+yarn global add expo-cli
+echo "Remember to add yearn global bin directory to your .bashrc file"

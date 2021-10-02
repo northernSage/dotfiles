@@ -1,0 +1,4 @@
+#!/bin/bash
+
+npm install -g yarn
+echo yarn has been installed globally. Remember to "yarn set version latest" to use per-project install.

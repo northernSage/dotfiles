@@ -45,6 +45,12 @@ fi
 
 # source $PWD/../themes/grouvboxpallet.sh
 
+# ************
+# * YARN BIN *
+# ************
+
+export PATH="$(yarn global bin):$PATH"
+
 # ***********
 # * ALIASES *
 # ***********
