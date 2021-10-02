@@ -18,7 +18,6 @@ set -o noclobber
 export EDITOR=vim
 export VISUAL=vim
 
-
 # add user scripts lynx config  and cargo binaries to path
 CARGOBIN=/home/gfvante/.cargo/bin
 
@@ -40,6 +39,11 @@ if command -v dircolors &>/dev/null; then
   fi
 fi
 
+# ************
+# * GROUVBOX *
+# ************
+
+# source $PWD/../themes/grouvboxpallet.sh
 
 # ***********
 # * ALIASES *

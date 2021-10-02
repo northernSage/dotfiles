@@ -3,10 +3,10 @@
 " ***********
 
 " Automatic installation of plugins
-"   this makes things much easier when working
-"   in remote systems, just need to push .vimrc
-"   using scp and all plugins will be installed
-"   the next times vim is executed
+" this makes things much easier when working
+" in remote systems, just need to push .vimrc
+" using scp and all plugins will be installed
+" the next times vim is executed
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -46,6 +46,7 @@ if (empty($TMUX))
 endif
 
 " colorscheme
+let g:gruvbox_italic=1
 colorscheme gruvbox
 set t_Co=256
 set background=dark
