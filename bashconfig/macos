@@ -1,0 +1,21 @@
+# source common config lines
+DOTFILES=$HOME/repos/github.com/northernSage/dotfiles
+source $DOTFILES/bashconfig/common
+
+# ********
+# * PATH *
+# ********
+
+# use gnu commands over macos bsd
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+
+# ***********
+# * ALIASES *
+# ***********
+
+# enable colors for freebs ls and gnu ls
+alias ls="ls --color=always"
+
+# for the lasta time, I do not want to use zash.
+export BASH_SILENCE_DEPRECATION_WARNING=1

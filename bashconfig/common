@@ -1,4 +1,4 @@
-# bash configuration for macOS environment
+# .bashrc
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then . /etc/bashrc
@@ -6,14 +6,22 @@ fi
 
 # pyenv terminal integration requirement
 if command -v pyenv &>/dev/null ; then
-  eval "$(pyenv init -)"
+    eval "$(pyenv init -)"
 fi
+
+# check the window size after each command and
+# update the values of LINES and COLUMNS
+shopt -s checkwinsize
 
 # enable vim mode
 set -o vi
 
 # noclobber
 set -o noclobber
+
+# set default editor
+export EDITOR=vim
+export VISUAL=vim
 
 # *************
 # * DIRCOLORS *
@@ -27,6 +35,28 @@ if command -v dircolors &>/dev/null; then
   fi
 fi
 
+# ********
+# * PATH *
+# ********
+
+CARGOBIN=/home/gfvante/.cargo/bin
+DOTFILES=$HOME/repos/github.com/northernSage/dotfiles
+
+# lynx config
+export PATH="$DOTFILES/lynx:$PATH"
+
+# cargo bin dir
+export PATH="$CARGOBIN:$PATH"
+
+# user scripts
+export PATH="$DOTFILES/scripts:$PATH"
+
+# ************
+# * GROUVBOX *
+# ************
+
+# source $PWD/../themes/grouvboxpallet.sh
+
 # ***********
 # * ALIASES *
 # ***********
@@ -34,25 +64,24 @@ fi
 # reset aliases
 unalias -a
 
+# todo list and notes
+alias note='vim $HOME/.notebook'
+
+# got to sleep
+alias afk='systemctl suspend -i'
+
+# lynx searches
+alias \?=duck
+alias \?\?=google
+
 # typing clear every time got old...
 alias c=clear
-
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Make all GNU flavor commands available, may override same-name BSD flavor commands for x86 Mac
-  export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
-  export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
-fi
-
-# personal notes file
-alias note="vim ~/.notebook"
-
-# enable colors for freebs ls and gnu ls
-alias ls="ls --color=always"
 
 # Common variations of 'ls' command
 alias ll="ls -l"
 alias lh="ls -lh"
 alias la="ls -la"
+alias ls="ls -h --color=auto"
 
 # for git commands
 alias gl='git log'
@@ -65,6 +94,9 @@ alias gc='git commit'
 alias gco='git checkout'
 alias gsb='git show-branch'
 
+# use vim instead of vi
+alias vi=vim
+
 # prevent accidents (but makes scripting harder)
 alias rm='rm -i'
 alias cp='cp -i'
@@ -72,25 +104,62 @@ alias mv='mv -n'
 alias mkdir='mkdir -p'
 
 # these make it easier to get around
-alias une='cd ~/unesp'
-alias cbb='cd ~/Github/cbb'
-alias dow='cd ~/downloads'
-alias des='cd ~/desktop'
-alias pic='cd ~/pictures'
-alias hub='cd ~/Github/'
-alias shh='cd ~/Github/devenv/ssh'
-alias dot='cd ~/Github/devenv/dotfiles'
+alias une='cd ~/Unesp'
+alias des='cd ~/Desktop'
+alias dow='cd ~/Downloads'
+alias pic='cd ~/Pictures'
+alias hub='cd ~/repos/github.com'
+alias shh='cd ~/repos/github.com/northernSage/ssh'
+alias dot='cd ~/repos/github.com/northernSage/dotfiles'
+alias scr='cd ~/repos/github.com/northernSage/dotfiles/scripts'
+
+# pdf viewer
+alias pdf='mupdf -r 160 -I'
+
+# *******************
+# * SCAPE SEQUENCES *
+# *******************
+
+# reset color
+NC="\[\e[m\]"
+
+# normal colors
+ANSIBLACK='\[\e[0;30m\]'
+ANSIRED='\[\e[0;31m\]'
+ANSIGREEN='\[\e[0;32m\]'
+ANSIYELLOW='\[\e[0;33m\]'
+ANSIBLUE='\[\e[0;34m\]'
+ANSIPURPLE='\[\e[0;35m\]'
+ANSICYAN='\[\e[0;36m\]'
+ANSIWHITE='\[\e[0;37m\]'
+
+# bold colors
+BANSIBLACK='\[\e[1;30m\]'
+BANSIRED='\[\e[1;31m\]'
+BANSIGREEN='\[\e[1;32m\]'
+BANSIYELLOW='\[\e[1;33m\]'
+BANSIBLUE='\[\e[1;34m\]'
+BANSIPURPLE='\[\e[1;35m\]'
+BANSICYAN='\[\e[1;36m\]'
+BANSIWHITE='\[\e[1;37m\]'
 
 # **********
 # * PROMPT *
-# ***********
+# **********
 
-# Prompt
 export PS1="\h \[\e[1;34m\]\w\[\e[m\] \\$ "
 
 # *************
 # * FUNCTIONS *
 # *************
+
+# we now have a trashbin
+TRASH=$HOME/.trash
+trash () {
+    [[ -z "$TRASH" ]] && return 1;
+    mkdir -p "$TRASH";
+    mv "$*" "$TRASH";
+}
 
 # that makes extracting archives a lot faster
 extract () {
@@ -116,12 +185,12 @@ extract () {
 }
 
 # Creates an archive (*.tar.gz) from given directory.
-function maketar() {
+maketar() {
     tar cvzf "${1%%/}.tar.gz"  "${1%%/}/";
 }
 
 # Create a ZIP archive of a file or folder.
-function makezip() {
+makezip() {
     zip -r "${1%%/}.zip" "$1" ;
 }
 
@@ -133,10 +202,3 @@ up() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# add scripts directory to path
-DOTFILES=$HOME/Github/devenv/dotfiles
-export PATH=$DOTFILES/macos/scripts:$PATH
-
-# for the lasta time, I do not want to use zash.
-export BASH_SILENCE_DEPRECATION_WARNING=1

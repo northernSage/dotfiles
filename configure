@@ -1,12 +1,12 @@
 #!/bin/bash
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    ln -sf "$PWD/macos/bashconfigmacos" ~/.bashrc
-    ls -l ~/.bashrc
+    ln -sf "$PWD/bashconfig/macos" ~/.bashrc
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    ln -sf "$PWD/linux/bashconfiglinux" ~/.bashrc
-    ls -l ~/.bashrc
+    ln -sf "$PWD/bashconfig/linux" ~/.bashrc
 fi
+
+ls -l ~/.bashrc
 
 ln -sf "$PWD/vimrc" ~/.vimrc
 ls -l ~/.vimrc
