@@ -1,0 +1,22 @@
+#!/bin/bash
+
+declare -r cyan=$'\033[38;2;0;255;255m'
+declare -r reset=$'\033[0m'
+
+RELEASE_PROMPT="Do you wish to release to pypi?"
+WARNING="(only proceed after checking if all is well in test.pypi): "
+
+# release to test.pypi first
+#python setup.py sdist bdist_wheel
+#twine check dist/*
+#twine upload -r testpypi dist/*
+
+# confirm actual pypi release after checking if all is ok
+while true; do
+    read -p "$cyan$RELEASE_PROMPT $WARNING$reset" yn
+    case $yn in
+        [Yy]* ) twine upload -r pypi dist/*; break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
