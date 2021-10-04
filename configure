@@ -3,7 +3,8 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
     ln -sf "$PWD/bashconfig/macos" ~/.bashrc
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    ln -sf "$PWD/bashconfig/linux" ~/.bashrc
+    echo "must implement a way to get the machine ip on linux systems to proceed"
+    exit;
 fi
 
 ls -l ~/.bashrc
