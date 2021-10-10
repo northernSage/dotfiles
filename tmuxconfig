@@ -44,11 +44,6 @@ bind -r l select-pane -R
 # avoid cursor movement messing with resize
 set -g repeat-time 200
 
-# ssh sessions do not support italics
-if-shell '[ -n '"$SSH_TTY"' ]' \
-    'set -g default-terminal "xterm-256color-italic"' \
-    'set -g default-terminal "screen-256color"'
-
 # colors, clock, and stuff
 setw -g clock-mode-colour cyan
 set -g base-index 1
