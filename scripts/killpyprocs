@@ -1,16 +1,2 @@
-#!/usr/bin/python
-
-import subprocess
-import os
-
-ps_output = subprocess.run(["ps"], capture_output=True, text=True)
-
-lines = [l.strip() for l in ps_output.stdout.split("\n")][1:-1]
-
-procs = [{"pid": s.split()[0], "name": s.split()[3]} for s in lines]
-
-to_kill = [p for p in procs if p["name"] == "python"]
-
-for p in to_kill:
-    if p["pid"] != os.getpid():
-        subprocess.run(["kill", "-9", p["pid"]])
+#!/bin/bash
+sudo pkill python
