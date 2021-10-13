@@ -79,6 +79,9 @@ export NVM_DIR="$HOME/.nvm"
 # reset aliases
 unalias -a
 
+# always use python3
+alias python="python3"
+
 # todo list and notes
 alias note='vim $HOME/.notebook'
 
