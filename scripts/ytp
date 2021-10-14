@@ -1,10 +1,15 @@
 #!/bin/bash
 
+if [ "$1" = "-s" ]; then
+    pkill mpv
+    exit
+fi
+
 MAX=10
 YT_API_URL=https://youtube.googleapis.com/youtube/v3
 YT_BASE_VIDEO_URL=https://www.youtube.com/watch?v=
 
-RESULT=$(curl "$YT_API_URL/search?part=snippet&maxResults=$MAX&q=$1&key=$YT_API_KEY&regionCode=GB&type=video" 2>/dev/null --header 'Accept: application/json' --compressed | grep -e "videoId" -e "title")
+RESULT=$(curl "$YT_API_URL/search?part=snippet&maxResults=$MAX&q="$1"&key=$YT_API_KEY&regionCode=GB&type=video" 2>/dev/null --header 'Accept: application/json' --compressed | grep -e "videoId" -e "title")
 
 VIDEO_IDS=()
 VIDEO_TITLES=()
