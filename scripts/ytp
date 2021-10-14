@@ -1,5 +1,22 @@
 #!/bin/bash
 
+declare -r red=$'\033[38;2;255;50;50m'
+declare -r cyan=$'\033[38;2;0;255;255m'
+declare -r reset=$'\033[0m'
+
+if [ ! -x "$(command -v mpv)" ]; then
+    echo $red"It doesn't look like mpv is installed."$reset
+    exit
+fi
+
+if [ ! -x "$(command -v youtube-dl)" ]; then
+    echo $red"It doesn't look like youtube-dl is installed."$reset
+fi
+
+if [ -z $YT_API_KEY ]; then
+    echo $cyan"You need to set YT_API_KEY to your api key."$reset
+fi
+
 if [ "$1" = "-s" ]; then
     pkill mpv
     exit
