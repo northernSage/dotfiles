@@ -165,7 +165,7 @@ BANSIWHITE='\[\e[1;37m\]'
 # * PROMPT *
 # **********
 
-export PS1="\h \[\e[1;34m\]\w\[\e[m\] \\$ "
+export PS1="\h \[\e[1;34m\]\W\[\e[m\] \\$ "
 
 # *************
 # * FUNCTIONS *

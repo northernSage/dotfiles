@@ -1,0 +1,38 @@
+#!/bin/bash
+
+MAX=10
+YT_API_URL=https://youtube.googleapis.com/youtube/v3
+YT_BASE_VIDEO_URL=https://www.youtube.com/watch?v=
+
+RESULT=$(curl "$YT_API_URL/search?part=snippet&maxResults=$MAX&q=$1&key=$YT_API_KEY&regionCode=GB&type=video" 2>/dev/null --header 'Accept: application/json' --compressed | grep -e "videoId" -e "title")
+
+VIDEO_IDS=()
+VIDEO_TITLES=()
+
+IS_ID=true
+while IFS= read -r line; do
+    # xargs to trim off extra spaces and remove quotes
+    TRIMMED_LINE=$(echo "$line" | xargs)
+    # we alternate since video lines will follow order:
+    #   iteration 1: video id
+    #   iteration 2: video title
+    #   repeat 1, 2, 1, 2, ...
+    if [ "$IS_ID" = true ]; then
+        IFS=' '; FIELDS=($TRIMMED_LINE); IFS=$'\n'
+        VIDEO_IDS+=("${FIELDS[1]}")
+        IS_ID=false
+    else
+        # titles have spaces, so split on ":" instead
+        IFS=':'; FIELDS=($TRIMMED_LINE); IFS=$'\n'
+        VIDEO_TITLES+=("$(echo ${FIELDS[1]} | xargs)")
+        IS_ID=true
+    fi
+done <<< "$RESULT"
+
+# show list of videos
+for i in "${!VIDEO_TITLES[@]}"; do
+    printf "%s. %s\n" "$i" "${VIDEO_TITLES[$i]}"
+done
+
+read -p "Pick one to play: " IDX_CHOICE
+mpv --no-video "${YT_BASE_VIDEO_URL}${VIDEO_IDS[$IDX_CHOICE]}" 1>/dev/null 2>&1 &
