@@ -176,7 +176,7 @@ trash () {
     [[ -z "$TRASH" ]] && return 1;
     mkdir -p "$TRASH";
     mv "$*" "$TRASH";
-}
+} && export -f trash
 
 # that makes extracting archives a lot faster
 extract () {
@@ -199,22 +199,22 @@ extract () {
    else
        echo "'$1' is not a valid file!"
    fi
-}
+} && export -f extract
 
 # Creates an archive (*.tar.gz) from given directory.
 maketar() {
     tar cvzf "${1%%/}.tar.gz"  "${1%%/}/";
-}
+} && export -f maketar
 
 # Create a ZIP archive of a file or folder.
 makezip() {
     zip -r "${1%%/}.zip" "$1" ;
-}
+} && export -f makezip
 
 # very convenient alternative to cd ../../..(...)
 up() {
     cd $(eval printf '../'%.0s "{1..$1}") && pwd;
-}
+} && export -f up
 
 # simple stopwatch for testing stuff
 stopwatch(){
@@ -223,4 +223,4 @@ stopwatch(){
     echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
     sleep 0.1
    done
-}
+} && export -f stopwatch
