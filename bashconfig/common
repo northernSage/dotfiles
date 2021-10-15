@@ -10,8 +10,7 @@ if command -v pyenv &>/dev/null ; then
 fi
 
 # check the window size after each command and
-# update the values of LINES and COLUMNS
-shopt -s checkwinsize
+# update the values of LINES and COLUMNS shopt -s checkwinsize
 
 # enable vim mode
 set -o vi
@@ -217,3 +216,11 @@ up() {
     cd $(eval printf '../'%.0s "{1..$1}") && pwd;
 }
 
+# simple stopwatch for testing stuff
+stopwatch(){
+  date1=`date +%s`;
+   while true; do
+    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
+    sleep 0.1
+   done
+}
