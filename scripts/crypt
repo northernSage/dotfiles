@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Archive, compress and encrypt given directory or file to a *.tar.gz.gpg
+# output file with basename name following "<File or dir name>-<current date>"
+
 RECIP=gfvante@pm.me
 DATE=$(date +'%d-%B')
 OUT="$(basename "$1")-$DATE.tar.gz.gpg"

@@ -1,2 +1,10 @@
 #!/bin/sh
+# Use this with custom lynx confs in this repo. An easy way to look up stuff
+# wihtout leaving the command line or typing too much. Just set up a alias
+# in your bashrc pointing to this script. For example:
+#
+# alias ??=<script_dirPath>/google
+#
+# them, from your command line just "?? <search term>"
+
 lynx "google.com/search?q=$*"

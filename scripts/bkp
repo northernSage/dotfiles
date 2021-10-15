@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Backs up all content in dotfiles and ssh dir to VCS repo. This is quite
+# uselful for keeping development environment and ssh keys syncronized
+# between different machines. Of course, the ssh should be a private repo
+# for obvious safety reasons
+
 cd $HOME/repos/github.com/northernSage/ssh
 git add -A
 git commit -m "backup $(date)"

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Let the cows loose. This just keeps swaping between cowsay different
+# pre-configured options while displaying current date and time.
+
 if [ -z "$(which cowsay)" ]; then
   echo cowsay is not installed.
   exit 1

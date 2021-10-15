@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# One the most useful scripts IMO. Want to create a quick paste of something
+# and make it available to anyone on the internet? Just do:  <command> | ix
+# in your command line and it will be uploaded to ix. The generated url will
+# be copied to the cliboard using xclip.
+
 if [ -n "$1" ]; then
   exec curl -s "ix.io/$1"
 fi

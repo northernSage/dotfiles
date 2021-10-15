@@ -1,3 +1,5 @@
 #!/bin/bash
 
+# Decrypt, extract and un-archive given file.
+
 gpg -d "$1" | tar -xvzf -

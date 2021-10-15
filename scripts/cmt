@@ -1,4 +1,10 @@
 #!/bin/bash
+
+# script to insert '#' or given character before a block of text.This is meant
+# to be used with vim. Just select the text, press "!" type cmt and press ENTER
+# To add a different character, just pass it to the cmt command like so:
+# cmt <my_character>
+
 while IFS= read -r line; do
     echo "${1:-#} $line"
 done
