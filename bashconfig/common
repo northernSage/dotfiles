@@ -38,11 +38,12 @@ fi
 # * TERMINAL ITALICS *
 # ********************
 
-if [ -n "$SSH_TTY" ] || [ -n "$SSH_CLIENT" ]; then
-  export TERM=screen-256color
-else
-  export TERM=xterm-256color-italic
-fi
+export TERM=xterm-256color
+# if [ -n "$SSH_TTY" ] || [ -n "$SSH_CLIENT" ]; then
+#   export TERM=screen-256color
+# else
+#   export TERM=xterm-256color-italic
+# fi
 
 # ********
 # * PATH *
@@ -181,7 +182,7 @@ trash () {
 # that makes extracting archives a lot faster
 extract () {
    if [ -f "$1" ] ; then
-       case "$1" in
+      case "$1" in
            *.tar.gz)    tar xvzf "$1";;
            *.tar.xz)    tar xvf "$1";;
            *.tar.bz2)   tar xvjf "$1";;

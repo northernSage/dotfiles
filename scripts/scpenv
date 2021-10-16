@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# push local environment config files to remote using scp
+
+declare -r red=$'\033[38;2;255;50;50m'
+declare -r reset=$'\033[0m'
+
+if [[ $# -eq 0 ]]; then
+    echo $red"must give a remote to push files to"$reset
+    exit 1
+fi
+
+SCRIPT_DIR=$(dirname $(readlink -f $0))
+CONFIG_DIR="$SCRIPT_DIR"/..
+
+scp $CONFIG_DIR/vimrc "$1":.vimrc
+scp $CONFIG_DIR/tmuxconfig "$1":.tmux.conf
+scp $CONFIG_DIR/dircolors "$1":.dircolors
+scp $CONFIG_DIR/bashconfig/common "$1":.bashrc
