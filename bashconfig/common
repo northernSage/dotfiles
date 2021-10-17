@@ -38,12 +38,11 @@ fi
 # * TERMINAL ITALICS *
 # ********************
 
-export TERM=xterm-256color
-# if [ -n "$SSH_TTY" ] || [ -n "$SSH_CLIENT" ]; then
-#   export TERM=screen-256color
-# else
-#   export TERM=xterm-256color-italic
-# fi
+if [ -n "$SSH_TTY" ] || [ -n "$SSH_CLIENT" ]; then
+    export TERM=xterm-256color
+else
+    export TERM=xterm-256color-italic
+fi
 
 # ********
 # * PATH *

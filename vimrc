@@ -41,13 +41,13 @@ endif
 
 " colorscheme
 try
-  let g:gruvbox_italic=1
   colorscheme gruvbox
 catch
   echo "Skipping colorscheme gruvbox since morhetz/gruvbox is not yet installed."
 endtry
 
 set t_Co=256
+let g:gruvbox_italic=1
 set background=dark
 
 " disable backup files
