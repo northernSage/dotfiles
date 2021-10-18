@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Uncomment a block of code. This is meant to be used with vim.
+# Just select the text, press "!" type ucmt and press ENTER.
+# If you want to remove more than the first two characters of
+# each line, just do: ucmt <NUMBER_OF_CHARACTERS>
+
+CUT=2
+while IFS= read -r line; do
+    if [[ ! -z "$1" ]]; then
+        CUT=$1
+    fi
+    echo "${line:CUT}"
+done

@@ -1,3 +1,5 @@
 #!/bin/bash
 
+# Print date and time in shorter format
+
 date "+%Y-%m-%d %H:%M:%S"
