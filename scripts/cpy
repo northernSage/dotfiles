@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# This just pipes stdin into xclip for copying and pasting text across different
+# tmux panes, vim and external applications. Why? typing !!cpy is easier to type
+# than using registers or !!xclip + u every time.
+
+xclip -i && xclip -o
