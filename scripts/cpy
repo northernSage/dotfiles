@@ -4,4 +4,4 @@
 # tmux panes, vim and external applications. Why? typing !!cpy is easier to type
 # than using registers or !!xclip + u every time.
 
-xclip -i && xclip -o
+xclip -i -selection "clipboard" && xclip -o -selection "clipboard"
