@@ -17,7 +17,7 @@ To install and configure use the provided instalation scripts inside the
 For lynx, use its respective `setup` script inside `lynxconfig`
 
 ## Overview
-
+```
 .
 ├── bashconfig		# shell customization stuff
 ├── linux		# linux specific stuff
@@ -28,3 +28,4 @@ For lynx, use its respective `setup` script inside `lynxconfig`
 ├── scripts		# general bash scripts dir
 ├── themes		# shell color themes
 └── wsl			# windows subsystem for linux conf files
+```
