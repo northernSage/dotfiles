@@ -9,9 +9,9 @@ stuff on `linux` and `macos` script.
 # How to Use
 
 After cloning the repository simply create a symbolic lynk to ``linux`` or
-``macos`` in your home folder
+``macos`` script in your home folder
 
-    ``ln -sf "$PWD/bashconfig/linux" ~/.bashrc``
+    ``ln -sf "$PWD/linux" ~/.bashrc``
 
 Or just run the provided ``configure`` script in the root directory. It will
 automatically detect the OS and symlinc the correct version. The ``common``
