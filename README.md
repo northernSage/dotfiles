@@ -28,4 +28,3 @@ For lynx, use its respective `setup` script inside `lynxconfig`
 ├── scripts		# general bash scripts dir
 ├── themes		# shell color themes
 └── wsl			# windows subsystem for linux conf files
-
