@@ -1,13 +1,23 @@
 #!/bin/bash
 
+# Hooks up all configuration files in the repository by creating symlinks in
+# you home directory.
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     ln -sf "$PWD/bashconfig/macos" ~/.bashrc
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    echo "must implement a way to get the machine ip on linux systems to proceed"
+    ln -sf "$PWD/bashconfig/linux" ~/.bashrc
     exit;
 fi
 
 ls -l ~/.bashrc
+
+if [ -z "$(which vim)" -o -z "$(which vimtutor)" ]; then
+    echo Install full vim and try again.
+    exit 1
+else
+    ln -sf "$PWD/vimrc" "$HOME/.vimrc"
+fi
 
 ln -sf "$PWD/vimrc" ~/.vimrc
 ls -l ~/.vimrc
