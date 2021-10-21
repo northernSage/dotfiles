@@ -9,7 +9,7 @@ file is avoided in favour of asorted bash scripts integrated with `vim` by using
 and if we need to do something not natively supported by `vim`, we do it with
 bash. This guarantees portability to any unix and unix-like machines.
 
-## Installation
+## How to use
 
 To install and configure use the provided instalation scripts inside the
 `install` directory and configure with the `configure` script.
