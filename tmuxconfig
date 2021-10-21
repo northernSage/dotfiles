@@ -74,8 +74,5 @@ set -g message-style "fg=cyan"
 #set -g status off
 set -g status on
 
-# easy way to clear current pane
-bind-key -n C-p send-keys -R
-
 # enable italics
 set -g default-terminal "tmux-256color-italic"
