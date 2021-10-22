@@ -3,7 +3,7 @@
 # Youtube music player (ytp) script since I was getting tired of alt+tabbing off
 # my terminal every time I wanted to change music. It works on top of mpv and
 # makes curl requests to youtube API to get video IDs based on a search keyword.
-# why? so we can play stuff without leaving vim of course :D
+# why? so we can play stuff without leaving vim, of course :D
 
 MAX=10
 YT_API_URL=https://youtube.googleapis.com/youtube/v3
@@ -34,7 +34,6 @@ SCAPED_SEARCH_TERM="${1// /%20}"
 
 RESULT=$(curl "$YT_API_URL/search?part=snippet&maxResults=$MAX&q=$SCAPED_SEARCH_TERM&key=$YT_API_KEY&regionCode=GB&type=video" 2>/dev/null --header 'Accept: application/json' --compressed | grep -e "videoId" -e "title")
 
-
 VIDEO_IDS=()
 VIDEO_TITLES=()
 
@@ -63,5 +62,6 @@ for i in "${!VIDEO_TITLES[@]}"; do
     printf "%s. %s\n" "$i" "${VIDEO_TITLES[$i]}"
 done
 
+# pick a video and play it
 read -p "Pick one to play: " IDX_CHOICE
 mpv --no-video "${YT_BASE_VIDEO_URL}${VIDEO_IDS[$IDX_CHOICE]}" 1>/dev/null 2>&1 &
