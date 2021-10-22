@@ -39,8 +39,6 @@ if (empty($TMUX))
   endif
 endif
 
-" colorscheme
-
 " avoid error when starting vim for the first time in a new system
 try
   colorscheme gruvbox
@@ -92,9 +90,6 @@ set noswapfile
 " just use tmux and don't do multiple VI windows
 set laststatus=0
 
-" more powerfull backspace
-set backspace=indent,eol,start
-
 " Show file stats
 set ruler
 
@@ -106,11 +101,48 @@ set incsearch
 set shortmess=aoOtI
 
 " enable folding
-set foldmethod=indent
-set foldlevel=99
+set foldmethod=manual
 
 " prevents truncated yanks, deletes, etc
 set viminfo='20,<1000,s1000
+
+" no bracket matching
+let g:loaded_matchparen=1
+set noshowmatch
+
+if $PLATFORM == 'mac'
+  " required for mac delete to work
+  set backspace=indent,eol,start
+endif
+
+" don't complain about switching buffer with changes
+set hidden
+
+" increase x-history size
+set history=100
+
+" allow sensing filetype
+filetype plugin on
+
+" treat files as given type
+au bufnewfile,bufRead *.crontab set filetype=crontab
+au bufnewfile,bufRead *ssh/config set filetype=sshconfig
+au bufnewfile,bufRead *gitconfig set filetype=gitconfig
+au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
+au bufnewfile,bufRead *.profile,common,linux,macos,vimrc set filetype=sh
+
+" start at last place you were editing
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" disable arrow keys
+noremap <up> :echoerr "Umm, use k instead"<CR>
+noremap <down> :echoerr "Umm, use j instead"<CR>
+noremap <left> :echoerr "Umm, use h instead"<CR>
+noremap <right> :echoerr "Umm, use l instead"<CR>
+inoremap <up> <NOP>
+inoremap <down> <NOP>
+inoremap <left> <NOP>
+inoremap <right> <NOP>
 
 " *****************
 " * FUNCTION KEYS *
@@ -118,9 +150,9 @@ set viminfo='20,<1000,s1000
 
 " enable paste mode
 set pastetoggle=<F3>
-
-" enable folding with the spacebar
-nnoremap <space> za
+map <F4> : set list!<CR>
+map <F5> : set cursorline!<CR>
+map <F6> : set spell!<CR>
 
 " *******
 " * ALE *
@@ -154,17 +186,6 @@ set autoindent
 set textwidth=73
 set linebreak
 
-set encoding=utf-8 " utf support
-
-" treat bashconfig as a bash file
-au bufnewfile,bufRead common,linux,macos,vimrc set filetype=sh
-
-" python
-autocmd FileType py,sh setlocal shiftwidth=4 softtabstop=4 tabstop=4
-
-" C family
-autocmd FileType c,h,cpp,hpp setlocal shiftwidth=2 softtabstop=2 tabstop=2
-
 " js and config files
 autocmd FileType javascript,yml,yaml,conf,json setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
@@ -173,3 +194,7 @@ autocmd FileType javascript,yml,yaml,conf,json setlocal shiftwidth=2 softtabstop
 " flag unnecessary whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+
+" read private vim configuration
+" set rtp^=~/.vimpersonal
+" set rtp^=~/.vimprivate
