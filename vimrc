@@ -60,7 +60,7 @@ set icon
 " *************
 " * BEHAVIOUR *
 " *************
-
+"
 " force everything to be set explicitly
 let skip_defaults_vim=1
 
@@ -122,6 +122,8 @@ set hidden
 set history=100
 
 " allow sensing filetype
+filetype on
+filetype indent on
 filetype plugin on
 
 " treat files as given type
@@ -182,9 +184,11 @@ set smarttab
 " turn this off when pasting
 set autoindent
 
-" enough for line numbers and spaces within 80 chars long
-set textwidth=73
-set linebreak
+" this thing was annoying the hell out of me
+set tw=0
+"set nowrap
+"set linebreak
+
 
 " js and config files
 autocmd FileType javascript,yml,yaml,conf,json setlocal shiftwidth=2 softtabstop=2 tabstop=2
