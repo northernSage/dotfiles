@@ -70,9 +70,6 @@ set nocompatible
 " line numbers most always show
 set number
 
-" show spaces, tabs, etc
-set list
-
 " make list chars pretty
 set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
 
@@ -189,9 +186,8 @@ set tw=0
 "set nowrap
 "set linebreak
 
-
 " js and config files
-autocmd FileType javascript,yml,yaml,conf,json setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType javascript,yml,javascriptreact,yaml,conf,json setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 "let g:syntastic_c_include_dirs = ['include', '../include']
 
