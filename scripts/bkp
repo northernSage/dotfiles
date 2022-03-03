@@ -17,9 +17,4 @@ git add -A
 git commit -m "$BKP_MSG"
 git push
 
-cd $HOME/repos/github.com/northernSage/3d-modelling
-git add -A
-git commit -m "$BKP_MSG"
-git push
-
 echo "Done!"

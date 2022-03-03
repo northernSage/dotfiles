@@ -3,24 +3,16 @@
 # Hooks up all configuration files in the repository by creating symlinks in
 # you home directory.
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    ln -sf "$PWD/bashconfig/macos" ~/.bashrc
-elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    ln -sf "$PWD/bashconfig/linux" ~/.bashrc
-    exit;
-fi
-
+ln -sf "$PWD/bashrc" ~/.bashrc
 ls -l ~/.bashrc
 
 if [ -z "$(which vim)" -o -z "$(which vimtutor)" ]; then
     echo Install full vim and try again.
     exit 1
 else
-    ln -sf "$PWD/vimrc" "$HOME/.vimrc"
+    ln -sf "$PWD/vimrc" ~/.vimrc
+    ls -l ~/.vimrc
 fi
-
-ln -sf "$PWD/vimrc" ~/.vimrc
-ls -l ~/.vimrc
 
 ln -sf "$PWD/dircolors" ~/.dircolors
 ls -l ~/.dircolors

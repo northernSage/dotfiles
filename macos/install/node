@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# install and enable latest LTS node
-nvm install --lts
-nvm install --lets

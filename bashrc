@@ -4,7 +4,10 @@
 if [ -f /etc/bashrc ]; then . /etc/bashrc
 fi
 
+
 # pyenv terminal integration requirement
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv &>/dev/null ; then
     eval "$(pyenv init -)"
 fi
@@ -42,22 +45,17 @@ if command -v dircolors &>/dev/null; then
   fi
 fi
 
-# ********************
-# * TERMINAL ITALICS *
-# ********************
-
-if [ -n "$SSH_TTY" ] || [ -n "$SSH_CLIENT" ]; then
-    export TERM=xterm-256color
-else
-    export TERM=xterm-256color-italic
-fi
-
 # ********
 # * PATH *
 # ********
 
 CARGOBIN=/home/gfvante/.cargo/bin
 DOTFILES=$HOME/repos/github.com/northernSage/dotfiles
+
+eval "$(pyenv init --path)"
+
+# yarn bin dir
+export PATH="$HOME/.yarn/bin:$PATH"
 
 # lynx config
 export PATH="$DOTFILES/lynx:$PATH"
@@ -68,7 +66,6 @@ export PATH="$CARGOBIN:$PATH"
 # user scripts
 export PATH="$DOTFILES/scripts:$PATH"
 
-# nvm stuff
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -77,11 +74,8 @@ export NVM_DIR="$HOME/.nvm"
 export ANDROID_SDK="$HOME/Android/Sdk"
 export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 
-# ************
-# * GROUVBOX *
-# ************
-
-# source $PWD/../themes/grouvboxpallet.sh
+# run android from anywhere
+export PATH="/opt/android-studio/bin:$PATH"
 
 # ***********
 # * ALIASES *
@@ -89,9 +83,6 @@ export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 
 # reset aliases
 unalias -a
-
-# always use python3
-alias python="python3.9"
 
 # todo list and notes
 alias note='vim $HOME/.notebook'
@@ -133,7 +124,6 @@ alias mv='mv -n'
 alias mkdir='mkdir -p'
 
 # these make it easier to get around
-alias une='cd ~/Unesp'
 alias des='cd ~/Desktop'
 alias dow='cd ~/Downloads'
 alias pic='cd ~/Pictures'
@@ -227,12 +217,3 @@ makezip() {
 up() {
     cd $(eval printf '../'%.0s "{1..$1}") && pwd;
 } && export -f up
-
-# simple stopwatch for testing stuff
-stopwatch(){
-  date1=`date +%s`;
-   while true; do
-    echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
-    sleep 0.1
-   done
-} && export -f stopwatch

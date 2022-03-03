@@ -73,6 +73,3 @@ set -g message-style "fg=cyan"
 # disable status
 #set -g status off
 set -g status on
-
-# enable italics
-set -g default-terminal "tmux-256color-italic"

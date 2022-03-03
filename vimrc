@@ -17,7 +17,7 @@ call plug#begin('~/.vim/plugged')
 
 " make sure you use single quotes
 Plug 'dense-analysis/ale'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 
 " initialize plugin system
 call plug#end()
@@ -40,16 +40,16 @@ if (empty($TMUX))
 endif
 
 " avoid error when starting vim for the first time in a new system
-try
-  colorscheme gruvbox
-catch
-  echo "Skipping colorscheme gruvbox since morhetz/gruvbox is not yet installed."
-endtry
+"try
+"  colorscheme gruvbox
+"catch
+"  echo "Skipping colorscheme gruvbox since morhetz/gruvbox is not yet installed."
+"endtry
 
 " terminal colors and italics
 set t_Co=256
-let g:gruvbox_italic=1
-set background=dark
+"let g:gruvbox_italic=1
+"set background=dark
 
 " enable syntax highlight
 syntax enable
@@ -152,14 +152,7 @@ set pastetoggle=<F3>
 map <F4> : set list!<CR>
 map <F5> : set cursorline!<CR>
 map <F6> : set spell!<CR>
-
-" *******
-" * ALE *
-" *******
-
-" TODO: install fixers and linters for python and C
-" enable fixing with black and some C fixer..
-" let g:ale_fixers = ['prettier', 'eslint']
+map <F7> : set nu!<CR>
 
 " ***************
 " * Indentation *
@@ -194,7 +187,3 @@ autocmd FileType javascript,yml,javascriptreact,yaml,conf,json setlocal shiftwid
 " flag unnecessary whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
-
-" read private vim configuration
-" set rtp^=~/.vimpersonal
-" set rtp^=~/.vimprivate
