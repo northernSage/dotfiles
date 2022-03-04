@@ -4,7 +4,6 @@
 if [ -f /etc/bashrc ]; then . /etc/bashrc
 fi
 
-
 # pyenv terminal integration requirement
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -32,6 +31,7 @@ case "$OS" in
   FreeBSD|Darwin) export PLATFORM=mac ;;
   *)              export PLATFORM=unknown ;;
 esac
+
 
 # *************
 # * DIRCOLORS *
@@ -76,6 +76,9 @@ export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 
 # run android from anywhere
 export PATH="/opt/android-studio/bin:$PATH"
+
+# source all private keys from ssh dir as env vars
+. $HOME/.ssh/keys
 
 # ***********
 # * ALIASES *

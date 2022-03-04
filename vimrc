@@ -17,7 +17,6 @@ call plug#begin('~/.vim/plugged')
 
 " make sure you use single quotes
 Plug 'dense-analysis/ale'
-" Plug 'morhetz/gruvbox'
 
 " initialize plugin system
 call plug#end()
@@ -39,17 +38,8 @@ if (empty($TMUX))
   endif
 endif
 
-" avoid error when starting vim for the first time in a new system
-"try
-"  colorscheme gruvbox
-"catch
-"  echo "Skipping colorscheme gruvbox since morhetz/gruvbox is not yet installed."
-"endtry
-
 " terminal colors and italics
 set t_Co=256
-"let g:gruvbox_italic=1
-"set background=dark
 
 " enable syntax highlight
 syntax enable
@@ -182,8 +172,17 @@ set tw=0
 " js and config files
 autocmd FileType javascript,yml,javascriptreact,yaml,conf,json setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
-"let g:syntastic_c_include_dirs = ['include', '../include']
-
 " flag unnecessary whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
+
+let g:ale_linters_explicit = 1
+
+let g:ale_sign_error = '*'
+let g:ale_sign_warning = '-'
+
+let g:ale_linters = {'python': ['flake8'],}
+let g:ale_fixers = {'python': ['autopep8'],}
+
+let g:ale_python_flake8_use_global = 1
+let g:ale_python_flake8_options = "--max-line-length=120"
