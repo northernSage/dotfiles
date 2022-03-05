@@ -32,7 +32,6 @@ case "$OS" in
   *)              export PLATFORM=unknown ;;
 esac
 
-
 # *************
 # * DIRCOLORS *
 # *************
@@ -78,7 +77,10 @@ export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 export PATH="/opt/android-studio/bin:$PATH"
 
 # source all private keys from ssh dir as env vars
-. $HOME/.ssh/keys
+source $HOME/.ssh/keys
+
+# source gruvbox color pallet script correction
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 
 # ***********
 # * ALIASES *
@@ -116,6 +118,9 @@ alias gs='git status'
 alias gc='git commit'
 alias gco='git checkout'
 alias gsb='git show-branch'
+# might need !
+alias gps='git push origin $(git rev-parse --abbrev-ref HEAD)'
+alias gpl='git pull origin $(git rev-parse --abbrev-ref HEAD)'
 
 # use vim instead of vi
 alias vi=vim

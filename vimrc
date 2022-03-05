@@ -16,6 +16,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " make sure you use single quotes
+Plug 'morhetz/gruvbox'
 Plug 'dense-analysis/ale'
 
 " initialize plugin system
@@ -29,7 +30,7 @@ call plug#end()
 " tmux version 2.2 or later, you can remove the outermost $TMUX check and use
 " tmux's 24-bit color support
 if (empty($TMUX))
-  if (has("nvim"))
+    if (has("nvim"))
     " for Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   endif
@@ -108,6 +109,9 @@ set hidden
 " increase x-history size
 set history=100
 
+" show sign over line number and not in gutter
+set signcolumn=number
+
 " allow sensing filetype
 filetype on
 filetype indent on
@@ -144,12 +148,16 @@ map <F5> : set cursorline!<CR>
 map <F6> : set spell!<CR>
 map <F7> : set nu!<CR>
 
+" maybe use this to namespace commands
+" nnoremap <leader>a <something>
+
 " ***************
 " * Indentation *
 " ***************
 
 " not into tabs
 set expandtab
+set shiftround
 
 " no matter what people say, 2 is too little
 " and 8 is way too much
@@ -157,7 +165,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-" couse smarter is better than dump
+" couse smarter is better than dumb
 set smartindent
 set smarttab
 
@@ -176,13 +184,18 @@ autocmd FileType javascript,yml,javascriptreact,yaml,conf,json setlocal shiftwid
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
+" gruvbox settings
+let g:gruvbox_contrast_dark='hard'
+
+" ale settings
 let g:ale_linters_explicit = 1
-
-let g:ale_sign_error = '*'
-let g:ale_sign_warning = '-'
-
 let g:ale_linters = {'python': ['flake8'],}
 let g:ale_fixers = {'python': ['autopep8'],}
-
 let g:ale_python_flake8_use_global = 1
-let g:ale_python_flake8_options = "--max-line-length=120"
+let g:ale_python_flake8_options = '--max-line-length=120'
+let g:ale_sign_error = "◉"
+let g:ale_sign_warning = "◉"
+hi link ALEErrorSign    GruvboxRed
+hi link ALEWarningSign  GruvboxYellow
+autocmd vimenter * ++nested colorscheme gruvbox
+let g:gruvbox_sign_column="bg0"
