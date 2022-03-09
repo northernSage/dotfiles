@@ -55,6 +55,9 @@ set icon
 " force everything to be set explicitly
 let skip_defaults_vim=1
 
+" use system clipboard
+set clipboard=unnamedplus
+
 " allow vim-ish stuff
 set nocompatible
 
