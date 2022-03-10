@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Deliting all android studio *.lock files..."
+rm -f $HOME/.android/avd/Pixel_2_API_32.avd/*.lock 
+echo "done."

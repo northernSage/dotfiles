@@ -72,9 +72,7 @@ export NVM_DIR="$HOME/.nvm"
 # android studio adb and other sdk stuff
 export ANDROID_SDK="$HOME/Android/Sdk"
 export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
-
-# run android from anywhere
-export PATH="/opt/android-studio/bin:$PATH"
+export PATH="$HOME/apps/android-studio/bin:$PATH"
 
 # source all private keys from ssh dir as env vars
 source $HOME/.ssh/keys
