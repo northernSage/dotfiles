@@ -141,6 +141,9 @@ alias scr='cd ~/repos/github.com/northernSage/dotfiles/scripts'
 # pdf viewer
 alias pdf='mupdf -r 160 -I'
 
+# activate venv using pyenv script
+alias venv='source createvenv'
+
 # *******************
 # * SCAPE SEQUENCES *
 # *******************

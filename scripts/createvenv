@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "creating new virtual environment..."
+python -m venv venv
+source $PWD/venv/bin/activate
+echo "upgrading pip to latest version..."
+pip install --upgrade pip
+echo "you are good to go!"
