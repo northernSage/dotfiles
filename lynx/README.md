@@ -21,14 +21,3 @@ If you ``cd`` in this directory, the command will look like:
 
 To make it permanent, add a similar line to your ``.bashrc`` using the path to
 the lynx directory of your clonned repository.
-
-# Overview
-
-.
-├── config
-├── lynx
-├── lynx.cfg
-├── lynx.lss
-└── README.md
-
-0 directories, 5 files

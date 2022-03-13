@@ -15,13 +15,3 @@ running ``grouvboxpallet.sh``.
 Personally, I like to match my vim and terminal looks so I have added grouvbox
 profile coping the grouvbox theme color pallet. This was intended for gnome
 terminal so I can't guarantee it will look good with other emulators.
-
-## Overview
-```
-.
-├── grouvboxpallet.sh
-├── grouvebox.itermcolors
-└── README.md
-```
-
-0 directories, 3 files

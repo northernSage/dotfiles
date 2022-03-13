@@ -20,32 +20,3 @@ file.
 As you will probably notice, most scripts are meant to be used alongside vim,
 tmux or lynx. That doesn't mean you can't change things around to fit your
 needs. Feel free to borrow and tweak whatever you need :)
-
-## Overview
-```
-.
-├── bkp
-├── chktor
-├── cmt
-├── cow
-├── cpy
-├── crypt
-├── dcrypt
-├── duck
-├── fish
-├── give
-├── google
-├── ix
-├── killpyprocs
-├── mailgun
-├── myip
-├── now
-├── pushhub
-├── pypirelease
-├── README.md
-├── scpenv
-├── sysinfo
-├── ucmt
-└── ytp
-```
-0 directories, 23 files

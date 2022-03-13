@@ -19,13 +19,8 @@ For lynx, use its respective `setup` script inside `lynxconfig`
 ## Overview
 ```
 .
-├── bashconfig		# shell customization stuff
-├── linux		# linux specific stuff
-│   └── install		# instalation scripts for linux software
-├── lynx		# lynx settings and scripts
-├── macos		# macos specific stuff
-│   └── install		# instalation scripts for macos software
-├── scripts		# general bash scripts dir
-├── themes		# shell color themes
-└── wsl			# windows subsystem for linux conf files
+├── install # instalation scripts for linux software
+├── lynx    # lynx settings and scripts
+├── scripts # general bash scripts dir
+└── themes  # shell color themes
 ```
