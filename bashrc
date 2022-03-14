@@ -108,7 +108,7 @@ alias ls="ls -h --color=auto"
 
 # for git commands
 alias gl='git log'
-alias gp='git push'
+alias gp='git pull'
 alias ga='git add'
 alias gd='git diff'
 alias gb='git branch'
@@ -116,9 +116,6 @@ alias gs='git status'
 alias gc='git commit'
 alias gco='git checkout'
 alias gsb='git show-branch'
-# might need !
-alias gps='git push origin $(git rev-parse --abbrev-ref HEAD)'
-alias gpl='git pull origin $(git rev-parse --abbrev-ref HEAD)'
 
 # use vim instead of vi
 alias vi=vim
@@ -134,6 +131,7 @@ alias des='cd ~/Desktop'
 alias dow='cd ~/Downloads'
 alias pic='cd ~/Pictures'
 alias hub='cd ~/repos/github.com'
+alias met='cd ~/repos/github.com/metrobi'
 alias shh='cd ~/repos/github.com/northernSage/ssh'
 alias dot='cd ~/repos/github.com/northernSage/dotfiles'
 alias scr='cd ~/repos/github.com/northernSage/dotfiles/scripts'
