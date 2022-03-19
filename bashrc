@@ -173,6 +173,9 @@ BANSIWHITE='\[\e[1;37m\]'
 # * PROMPT *
 # **********
 
+# This will show cwd branch (do not remove!)
+# git rev-parse --abbrev-ref HEAD
+
 export PS1="\h \[\e[1;34m\]\W\[\e[m\] \\$ "
 
 # *************
