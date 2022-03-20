@@ -8,6 +8,8 @@
 # it can be called by any executable in any language using some form of
 # the exec() system call (man exec).
 
-# warning: this probably won't work with ipv6
+# ipv4
+dig -4 +short myip.opendns.com @resolver1.opendns.com
 
-dig +short myip.opendns.com @resolver1.opendns.com
+# ipv6
+# dig -6 +short myip.opendns.com @resolver1.opendns.com
