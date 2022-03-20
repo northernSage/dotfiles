@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# recursively search for a given filename
+
+if [ $# -eq 0 ]; then
+    echo "usage:"
+    echo "ff <pattern> # search current directory for <pattern>";
+    echo "ff <path> <pattern> # search <path> for <pattern>";
+    exit
+fi
+
+case "$#" in
+    "1")
+        TARGET_DIR="."
+        ;;
+    "2")
+        TARGET_DIR="$1"
+        ;;
+    *)
+        echo "incorrect usage"
+        ;;
+esac
+
+find "$TARGET_DIR" -name "*$1*" -not \( -path "*/node_modules/*" -o -path "*/venv/*" -o -path "*/__pycache__/*" -o -path "*/.pytest_cache/*" -o -path "*/.git/*" \) | GREP_COLORS="sl=39;49:ms=1;4;32;49" grep --color=always '^\|[^/]*$' 
+

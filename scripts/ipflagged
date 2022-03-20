@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# This will check if a given ip/domain name has been compromised by checking
+# it against a large list of known malicious ips from zonefiles. Use it like:
+#
+# ipflagged -ip <ip_address> ----> this will check if <ip_address> has been flagged
+# ipflagged <domain_name>    ----> translated <domain_name> to ip and check if ip is flagged
+# ipflagged                  ----> check if ip of local machine has been flagged
+#
+# Examples
+#
+# ipflagged google.com       ----> check if google ip is flagged
+# ipflagged 201.103.6.221    ----> check if 201.103.6.221 is copromised (it is...:])
+
 declare -r red=$'\033[38;2;255;0;10m'
 declare -r green=$'\033[38;2;0;255;10m'
 declare -r reset=$'\033[0m'
