@@ -1,0 +1,22 @@
+#!/bin/bash
+
+declare -r red=$'\033[38;2;255;0;10m'
+declare -r green=$'\033[38;2;0;255;10m'
+declare -r reset=$'\033[0m'
+
+if [ "$1" = "-ip" ]; then
+    TARGET_IP=$2
+else
+    TARGET_IP=$(dig -4 +short myip.opendns.com @resolver1.opendns.com)
+    if [ $# -ne 0 ]; then
+        TARGET_IP=$(dig -4 +short $1)
+    fi
+fi
+
+RESULT=$(curl -s https://zonefiles.io/f/compromised/ip/full/ | grep "$TARGET_IP")
+
+if [ -z "$RESULT" ]; then
+    echo $green"${TARGET_IP} has not been flagged as malicious"$reset;
+else
+    echo $red"${TARGET_IP} has been flagged as potentially malicious"$reset
+fi
