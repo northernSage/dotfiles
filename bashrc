@@ -176,7 +176,7 @@ BANSIWHITE='\[\e[1;37m\]'
 # This will show cwd branch (do not remove!)
 # git rev-parse --abbrev-ref HEAD
 
-export PS1="\h \[\e[1;34m\]\W\[\e[m\] \\$ "
+export PS1="[\[\e[1;36m\]\W\[\e[m\]] \\$ "
 
 # *************
 # * FUNCTIONS *
