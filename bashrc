@@ -108,7 +108,7 @@ alias ls="ls -h --color=auto"
 
 # for git commands
 alias gl='git log'
-alias gp='git pull'
+alias gpl='git pull'
 alias ga='git add'
 alias gd='git diff'
 alias gb='git branch'
@@ -116,6 +116,7 @@ alias gs='git status'
 alias gc='git commit'
 alias gco='git checkout'
 alias gsb='git show-branch'
+alias gm='git merge'
 
 # use vim instead of vi
 alias vi=vim
@@ -176,7 +177,7 @@ BANSIWHITE='\[\e[1;37m\]'
 # This will show cwd branch (do not remove!)
 # git rev-parse --abbrev-ref HEAD
 
-export PS1="[\[\e[1;36m\]\W\[\e[m\]] \\$ "
+export PS1="[\[\e[1;36m\]\W\[\e[m\]]-[\[\e[1;36m\]$(date +%k:%M)\[\e[m\]] \\$ "
 
 # *************
 # * FUNCTIONS *
