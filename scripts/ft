@@ -2,6 +2,10 @@
 
 # recursively search for a given text pattern
 
+NC="\e[m"
+BANSIGREEN='\e[1;32m'
+BANSIRED='\e[1;31m'
+
 if [ $# -eq 0 ]; then
     echo "usage:"
     echo "ft <pattern> # search current directory for <pattern>";
@@ -17,7 +21,7 @@ case "$#" in
         TARGET_DIR="$1"
         ;;
     *)
-        echo "incorrect usage"
+		echo -e "${BANSIRED}Incorrect usage!${NC}" >&2; 
         ;;
 esac
 

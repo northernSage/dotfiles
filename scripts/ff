@@ -2,6 +2,10 @@
 
 # recursively search for a given filename
 
+NC="\e[m"
+BANSIGREEN='\e[1;32m'
+BANSIRED='\e[1;31m'
+
 if [ $# -eq 0 ]; then
     echo "usage:"
     echo "ff <pattern> # search current directory for <pattern>";
@@ -17,9 +21,36 @@ case "$#" in
         TARGET_DIR="$1"
         ;;
     *)
-        echo "incorrect usage"
+		echo -e "${BANSIRED}Incorrect usage!${NC}" >&2; 
         ;;
 esac
 
-find "$TARGET_DIR" -iname "*$1*" -not \( -path "*/node_modules/*" -o -path "*/venv/*" -o -path "*/__pycache__/*" -o -path "*/.pytest_cache/*" -o -path "*/.git/*" \) | GREP_COLORS="sl=39;49:ms=1;4;32;49" grep --color=always '^\|[^/]*$' 
+array=()
+while IFS=  read -r -d $'\0'; do
+    array+=("$REPLY")
+done < <(find "$TARGET_DIR" -iname "*$1*" -not \( -path "*/node_modules/*" -o -path "*/venv/*" -o -path "*/__pycache__/*" -o -path "*/.pytest_cache/*" -o -path "*/.git/*" \) -print0)
 
+for i in "${!array[@]}"; do 
+    LINE="${array[$i]}"
+    echo -en "${BANSIGREEN}${i}: ${NC}"
+    echo "$LINE" | GREP_COLORS="sl=39;49:ms=1;4;32;49" grep --color=always '^\|[^/]*$'
+done | less -R
+
+echo -en "file number ${BANSIGREEN}>>${NC} "
+read CHOICE
+
+re='^[0-9]+$'
+if ! [[ $CHOICE =~ $re ]] ; then
+	# give the user change to type again
+	echo -e "${BANSIRED}Invalid input!${NC}" >&2; 
+	exit 1
+fi
+
+FPATH="${array[$CHOICE]}"
+
+if [ ! -f "$FPATH" ]; then
+	echo -e "${BANSIRED}File does not exist!${NC}" >&2; 
+	exit
+fi
+
+vim "$FPATH"
