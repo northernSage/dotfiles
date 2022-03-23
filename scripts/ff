@@ -34,7 +34,7 @@ for i in "${!array[@]}"; do
     LINE="${array[$i]}"
     echo -en "${BANSIGREEN}${i}: ${NC}"
     echo "$LINE" | GREP_COLORS="sl=39;49:ms=1;4;32;49" grep --color=always '^\|[^/]*$'
-done | less -R
+done | less -RX
 
 echo -en "file number ${BANSIGREEN}>>${NC} "
 read CHOICE
