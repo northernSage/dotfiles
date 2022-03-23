@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# recursively search for a given filename
+# recursively search for a given filename and open chosen file on vim
 
 NC="\e[m"
 BANSIGREEN='\e[1;32m'
@@ -25,10 +25,12 @@ case "$#" in
         ;;
 esac
 
-array=()
-while IFS=  read -r -d $'\0'; do
-    array+=("$REPLY")
-done < <(find "$TARGET_DIR" -iname "*$1*" -not \( -path "*/node_modules/*" -o -path "*/venv/*" -o -path "*/__pycache__/*" -o -path "*/.pytest_cache/*" -o -path "*/.git/*" \) -print0)
+# array=()
+# while IFS=  read -r -d $'\0'; do
+#     array+=("$REPLY")
+# done < <(find "$TARGET_DIR" -iname "*$1*" -not \( -path "*/node_modules/*" -o -path "*/venv/*" -o -path "*/__pycache__/*" -o -path "*/.pytest_cache/*" -o -path "*/.git/*" \) -print0)
+
+array=($(find "$TARGET_DIR" -iname "*$1*" -not \( -path "*/node_modules/*" -o -path "*/venv/*" -o -path "*/__pycache__/*" -o -path "*/.pytest_cache/*" -o -path "*/.git/*" \)))
 
 for i in "${!array[@]}"; do 
     LINE="${array[$i]}"

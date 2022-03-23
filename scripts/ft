@@ -27,4 +27,38 @@ esac
 
 export GREP_COLORS="ms=1;4;32:fn=1;32:se=31"
 
-grep -rsiR --color=always --exclude-dir={node_modules,venv,__pycache__,env,.pytest_cache,.git} "$1" "$TARGET_DIR"
+PATHS=($(grep -rsiRl --exclude-dir={node_modules,venv,__pycache__,env,.pytest_cache,.git} "$1" "$TARGET_DIR"))
+
+DEFAULT_IFS="$IFS"
+IFS='
+'
+MATCHES=($(grep -rsiRh --color=always --exclude-dir={node_modules,venv,__pycache__,env,.pytest_cache,.git} "$1" "$TARGET_DIR"))
+IFS="$DEFAULT_IFS"
+
+
+for i in "${!PATHS[@]}"; do 
+    FILEPATH="${PATHS[$i]}"
+    MATCH="${MATCHES[$i]}"
+    echo -en "${BANSIGREEN}${i}: ${NC}"
+    echo -en "$FILEPATH ${BANSIRED}|${NC} "
+    echo -e "$MATCH" | xargs # trim whitespaces
+done | less -RX
+
+echo -en "file number ${BANSIGREEN}>>${NC} "
+read CHOICE
+
+re='^[0-9]+$'
+if ! [[ $CHOICE =~ $re ]] ; then
+	# give the user change to type again
+	echo -e "${BANSIRED}Invalid input!${NC}" >&2; 
+	exit 1
+fi
+
+FPATH="${PATHS[$CHOICE]}"
+
+if [ ! -f "$FPATH" ]; then
+	echo -e "${BANSIRED}File does not exist!${NC}" >&2; 
+	exit
+fi
+
+vim "$FPATH"
