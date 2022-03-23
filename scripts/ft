@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# recursively search for a given text pattern
+
+if [ $# -eq 0 ]; then
+    echo "usage:"
+    echo "ft <pattern> # search current directory for <pattern>";
+    echo "ft <path> <pattern> # search <path> for <pattern>";
+    exit
+fi
+
+case "$#" in
+    "1")
+        TARGET_DIR="."
+        ;;
+    "2")
+        TARGET_DIR="$1"
+        ;;
+    *)
+        echo "incorrect usage"
+        ;;
+esac
+
+export GREP_COLORS="ms=1;4;32:fn=1;32:se=31"
+
+grep -rsiR --color=always --exclude-dir={node_modules,venv,__pycache__,env,.pytest_cache,.git} "$1" "$TARGET_DIR"
