@@ -35,7 +35,6 @@ IFS='
 MATCHES=($(grep -rsiRh --color=always --exclude-dir={node_modules,venv,__pycache__,env,.pytest_cache,.git} "$1" "$TARGET_DIR"))
 IFS="$DEFAULT_IFS"
 
-
 for i in "${!PATHS[@]}"; do 
     FILEPATH="${PATHS[$i]}"
     MATCH="${MATCHES[$i]}"

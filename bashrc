@@ -109,6 +109,7 @@ alias ls="ls -h --color=auto"
 # for git commands
 alias gl='git log'
 alias gpl='git pull'
+alias gps='git push'
 alias ga='git add'
 alias gd='git diff'
 alias gb='git branch'
