@@ -25,34 +25,30 @@ case "$#" in
         ;;
 esac
 
-# array=()
-# while IFS=  read -r -d $'\0'; do
-#     array+=("$REPLY")
-# done < <(find "$TARGET_DIR" -iname "*$1*" -not \( -path "*/node_modules/*" -o -path "*/venv/*" -o -path "*/__pycache__/*" -o -path "*/.pytest_cache/*" -o -path "*/.git/*" \) -print0)
-
 array=($(find "$TARGET_DIR" -iname "*$1*" -not \( -path "*/node_modules/*" -o -path "*/venv/*" -o -path "*/__pycache__/*" -o -path "*/.pytest_cache/*" -o -path "*/.git/*" \)))
 
 for i in "${!array[@]}"; do 
     LINE="${array[$i]}"
     echo -en "${BANSIGREEN}${i}: ${NC}"
     echo "$LINE" | GREP_COLORS="sl=39;49:ms=1;4;32;49" grep --color=always '^\|[^/]*$'
-done | less -RX
+done
+#done | less -RX
 
-echo -en "file number ${BANSIGREEN}>>${NC} "
-read CHOICE
-
-re='^[0-9]+$'
-if ! [[ $CHOICE =~ $re ]] ; then
-	# give the user change to type again
-	echo -e "${BANSIRED}Invalid input!${NC}" >&2; 
-	exit 1
-fi
-
-FPATH="${array[$CHOICE]}"
-
-if [ ! -f "$FPATH" ]; then
-	echo -e "${BANSIRED}File does not exist!${NC}" >&2; 
-	exit
-fi
-
-vim "$FPATH"
+# echo -en "file number ${BANSIGREEN}>>${NC} "
+# read CHOICE
+# 
+# re='^[0-9]+$'
+# if ! [[ $CHOICE =~ $re ]] ; then
+# 	# give the user change to type again
+# 	echo -e "${BANSIRED}Invalid input!${NC}" >&2; 
+# 	exit 1
+# fi
+# 
+# FPATH="${array[$CHOICE]}"
+# 
+# if [ ! -f "$FPATH" ]; then
+# 	echo -e "${BANSIRED}File does not exist!${NC}" >&2; 
+# 	exit
+# fi
+# 
+# vim "$FPATH"
