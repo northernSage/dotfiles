@@ -74,6 +74,9 @@ export ANDROID_SDK="$HOME/Android/Sdk"
 export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 export PATH="$HOME/apps/android-studio/bin:$PATH"
 
+# doom emacs
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
 # source all private keys from ssh dir as env vars
 source $HOME/.ssh/keys
 
