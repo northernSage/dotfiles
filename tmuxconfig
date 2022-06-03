@@ -75,4 +75,6 @@ set -g message-style "fg=cyan"
 set -g status on
 
 # enable italics
-set -g default-terminal "tmux-256color"
+# set -g default-terminal "tmux-256color"
+set -g default-terminal "screen-256color"
+set -ga terminal-overrides ",*256col*:Tc"

@@ -5,19 +5,26 @@
 " automatic installation of plugins this makes things much easier when working
 " in remote systems, just need to push .vimrc using scp and all plugins will be
 " installed the next times vim is executed
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
 " specify a directory for plugins
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" make sure you use single quotes
 Plug 'morhetz/gruvbox'
-Plug 'dense-analysis/ale'
+Plug 'mhinz/vim-grepper'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 " initialize plugin system
 call plug#end()
@@ -31,12 +38,12 @@ call plug#end()
 " tmux's 24-bit color support
 if (empty($TMUX))
     if (has("nvim"))
-    " for Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  if (has("termguicolors"))
-    set termguicolors
-  endif
+        " for Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
+    if (has("termguicolors"))
+        set termguicolors
+    endif
 endif
 
 " terminal colors and italics
@@ -103,7 +110,7 @@ set noshowmatch
 
 if $PLATFORM == 'mac'
   " required for mac delete to work
-  set backspace=indent,eol,start
+  set backspace=indent,eol,start endif
 endif
 
 " don't complain about switching buffer with changes
@@ -115,7 +122,7 @@ set history=100
 " show sign over line number and not in gutter
 set signcolumn=number
 
-" allow sensing filetype
+" allow sensing filetype (conflicts with vundle)
 filetype on
 filetype indent on
 filetype plugin on
@@ -130,6 +137,10 @@ au bufnewfile,bufRead *.profile,common,linux,macos,vimrc set filetype=sh
 " start at last place you were editing
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" *****************
+" * FUNCTION KEYS *
+" *****************
+
 " disable arrow keys
 noremap <up> :echoerr "Umm, use k instead"<CR>
 noremap <down> :echoerr "Umm, use j instead"<CR>
@@ -139,10 +150,6 @@ inoremap <up> <NOP>
 inoremap <down> <NOP>
 inoremap <left> <NOP>
 inoremap <right> <NOP>
-
-" *****************
-" * FUNCTION KEYS *
-" *****************
 
 " enable paste mode
 set pastetoggle=<F3>
@@ -189,16 +196,28 @@ match ExtraWhitespace /\s\+$/
 
 " gruvbox settings
 let g:gruvbox_contrast_dark='hard'
-
-" ale settings
-let g:ale_linters_explicit = 1
-let g:ale_linters = {'python': ['flake8'],}
-let g:ale_fixers = {'python': ['autopep8'],}
-let g:ale_python_flake8_use_global = 1
-let g:ale_python_flake8_options = '--max-line-length=120'
-let g:ale_sign_error = "◉"
-let g:ale_sign_warning = "◉"
-hi link ALEErrorSign    GruvboxRed
-hi link ALEWarningSign  GruvboxYellow
 autocmd vimenter * ++nested colorscheme gruvbox
 let g:gruvbox_sign_column="bg0"
+
+" autocomplete
+"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+" ALE settings
+"let g:ale_completion_enabled = 1
+"let g:ale_linters = {'python': ['flake8', 'pylint'],}
+"let g:ale_fixers = {'python': ['autopep8'],}
+"let g:ale_python_flake8_use_global = 1
+"let g:ale_python_flake8_options = '--max-line-length=120'
+"let g:ale_sign_error = "◉"
+"let g:ale_sign_warning = "◉"
+"hi link ALEErrorSign    GruvboxRed
+"hi link ALEWarningSign  GruvboxYellow
+"let g:ale_python_pylint_options = "--init-hook='import sys; sys.path.append(\".\")'"
+
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+      set termguicolors
+endif
