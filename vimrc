@@ -20,12 +20,12 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin('~/.vim/plugged')
 
 Plug 'morhetz/gruvbox'
+Plug 'kien/ctrlp.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
 " initialize plugin system
 call plug#end()
 
@@ -55,10 +55,28 @@ syntax enable
 " sync terminal title with current fiel edited
 set icon
 
+" status line
+set statusline=
+set statusline +=%1*\ %n\ %*            "buffer number
+set statusline +=%5*%{&ff}%*            "file format
+set statusline +=%3*%y%*                "file type
+set statusline +=%4*\ %<%F%*            "full path
+set statusline +=%2*%m%*                "modified flag
+set statusline +=%1*%=%5l%*             "current line
+set statusline +=%2*/%L%*               "total lines
+set statusline +=%1*%4v\ %*             "virtual column number
+set statusline +=%2*0x%04B\ %*          "character under cursor
+
+" make list chars pretty
+set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
+
+" show sign over line number and not in gutter
+set signcolumn=number
+
 " *************
 " * BEHAVIOUR *
 " *************
-"
+
 " force everything to be set explicitly
 let skip_defaults_vim=1
 
@@ -69,24 +87,21 @@ set clipboard=unnamedplus
 set nocompatible
 
 " line numbers most always show
-set number
-
-" make list chars pretty
-set listchars=tab:→\ ,eol:↲,nbsp:␣,space:·,trail:·,extends:⟩,precedes:⟨
+" set number
 
 " always keep 7 lines bellow and above cursor
 set scrolloff=7
-
-" don't like relative line numbers
-set norelativenumber
 
 " backup files are way too annoying
 set nobackup
 set nowritebackup
 set noswapfile
 
+" relative numbering
+set rnu
+
 " just use tmux and don't do multiple VI windows
-set laststatus=0
+set laststatus=2
 
 " Show file stats
 set ruler
@@ -97,9 +112,6 @@ set incsearch
 
 " avoid most of the 'Hit Enter...' messages
 set shortmess=aoOtI
-
-" enable folding
-set foldmethod=manual
 
 " prevents truncated yanks, deletes, etc
 set viminfo='20,<1000,s1000
@@ -119,10 +131,7 @@ set hidden
 " increase x-history size
 set history=100
 
-" show sign over line number and not in gutter
-set signcolumn=number
-
-" allow sensing filetype (conflicts with vundle)
+" allow sensing filetype
 filetype on
 filetype indent on
 filetype plugin on
@@ -199,22 +208,20 @@ let g:gruvbox_contrast_dark='hard'
 autocmd vimenter * ++nested colorscheme gruvbox
 let g:gruvbox_sign_column="bg0"
 
-" autocomplete
-"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" autocomplete with tab
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
-" ALE settings
-"let g:ale_completion_enabled = 1
-"let g:ale_linters = {'python': ['flake8', 'pylint'],}
-"let g:ale_fixers = {'python': ['autopep8'],}
-"let g:ale_python_flake8_use_global = 1
-"let g:ale_python_flake8_options = '--max-line-length=120'
-"let g:ale_sign_error = "◉"
-"let g:ale_sign_warning = "◉"
-"hi link ALEErrorSign    GruvboxRed
-"hi link ALEWarningSign  GruvboxYellow
-"let g:ale_python_pylint_options = "--init-hook='import sys; sys.path.append(\".\")'"
+" LSP
+let g:lsp_diagnostics_signs_error = {'text': 'EE'}
+let g:lsp_diagnostics_signs_warning = {'text': 'WW'}
+"let g:lsp_diagnostics_signs_information 
+"let g:lsp_diagnostics_signs_hint
+" let g:lsp_diagnostics_virtual_text_enabled = 1
+" let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 1
+" let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
+let g:lsp_diagnostics_echo_cursor = 1
 
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"

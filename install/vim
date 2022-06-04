@@ -18,6 +18,7 @@ cd vim
             --with-python3-config-dir=$(python3-config --configdir) \
             --enable-perlinterp=yes \
             --enable-cscope \
+            --enable-luainterp=yes \
             --prefix=/usr/local
 
 make VIMRUNTIMEDIR=/usr/local/share/vim/vim82
