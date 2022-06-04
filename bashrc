@@ -110,7 +110,11 @@ alias la="ls -la"
 alias ls="ls -h --color=auto"
 
 # for git commands
+# can also use --author, -S, --no-merges, --until and -- <file name> with log
 alias gl='git log'
+alias gl1d='git log --since=1.day'
+alias glf='git log --pretty=format:"%h | %an (commiter %cn) | %ar | %s"'
+alias glg='git log --pretty=format:"%h | %s" --graph'
 alias gpl='git pull --ff-only'
 alias gps='git push'
 alias ga='git add'
@@ -118,6 +122,7 @@ alias gd='git diff'
 alias gb='git branch'
 alias gs='git status'
 alias gc='git commit'
+alias gca='git commit --amend'
 alias gco='git checkout'
 alias gsb='git show-branch'
 alias gm='git merge'
