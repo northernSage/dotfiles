@@ -126,6 +126,9 @@ alias gca='git commit --amend'
 alias gco='git checkout'
 alias gsb='git show-branch'
 alias gm='git merge'
+alias grs='git restore'
+alias grm='git remote'
+
 
 # use vim instead of vi
 alias vi=vim
