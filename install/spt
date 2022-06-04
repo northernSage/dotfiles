@@ -1,0 +1,9 @@
+#!/bin/bash
+
+snap install spt
+
+echo "Now integrate a spotify client with following steps:"
+echo "1. create a new app in spotify dashboard"
+echo "2. add http://localhost:8888/callback to redirect URIs"
+echo "3. run spt and add your client ID and client secret"
+echo "4. accept the permission request oppened in browser"
