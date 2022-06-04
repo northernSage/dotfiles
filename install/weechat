@@ -1,0 +1,15 @@
+#!/bin/bash
+
+sudo apt install weechat-python python3-websocket
+
+mkdir -p ~/.weechat/python/autoload
+cd ~/.weechat/python
+curl -O https://raw.githubusercontent.com/wee-slack/wee-slack/master/wee_slack.py
+ln -s ../wee_slack.py autoload
+
+echo "You should now get an OAuth token with following commands:"
+echo "1. /slack register"
+echo "2. (copy the code after going through browser auth flow...)"
+echo "3. /slack register <code>"
+echo "/python reload slack"
+
