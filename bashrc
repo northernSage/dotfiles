@@ -109,6 +109,11 @@ alias lh="ls -lh"
 alias la="ls -la"
 alias ls="ls -h --color=auto"
 
+# honestly hate macOS...
+if [ "$PLATFORM" = "mac" ]; then
+    alias ls="ls -h -G"
+fi
+
 # for git commands
 # can also use --author, -S, --no-merges, --until and -- <file name> with log
 alias gl='git log'

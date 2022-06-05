@@ -120,9 +120,10 @@ set viminfo='20,<1000,s1000
 let g:loaded_matchparen=1
 set noshowmatch
 
-if $PLATFORM == 'mac'
+if ($PLATFORM == 'mac')
   " required for mac delete to work
-  set backspace=indent,eol,start endif
+  set backspace=indent,eol,start
+  nnoremap y "+y
 endif
 
 " don't complain about switching buffer with changes
