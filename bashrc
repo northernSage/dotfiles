@@ -134,7 +134,7 @@ alias gm='git merge'
 alias grs='git restore'
 alias grm='git remote'
 alias gf='git fetch'
-
+alias gt='git tag'
 
 # use vim instead of vi
 alias vi=vim
