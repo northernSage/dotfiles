@@ -133,6 +133,7 @@ alias gsb='git show-branch'
 alias gm='git merge'
 alias grs='git restore'
 alias grm='git remote'
+alias gf='git fetch'
 
 
 # use vim instead of vi
