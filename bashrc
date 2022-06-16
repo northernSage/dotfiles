@@ -90,6 +90,9 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 # reset aliases
 unalias -a
 
+# add alias to run ultimaker cura
+alias cura='/opt/Ultimaker-Cura-5.0.0-linux.AppImage &>/dev/null & '
+
 # todo list and notes
 alias note='vim $HOME/.notebook'
 
