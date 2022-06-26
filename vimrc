@@ -217,8 +217,8 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " LSP
 let g:lsp_diagnostics_signs_error = {'text': 'EE'}
 let g:lsp_diagnostics_signs_warning = {'text': 'WW'}
-"let g:lsp_diagnostics_signs_information 
-"let g:lsp_diagnostics_signs_hint
+" let g:lsp_diagnostics_signs_information 
+" let g:lsp_diagnostics_signs_hint
 " let g:lsp_diagnostics_virtual_text_enabled = 1
 " let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 1
 " let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
@@ -243,5 +243,5 @@ endif
 nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
 nnoremap <leader>g :Grepper -tool git<cr>
-command! todo :Grepper -noprompt -tool git -grepprg git grep -nIi '\(TODO\|FIXME\)'
-command! hack :Grepper -noprompt -tool git -grepprg git grep -nIi '\(HACK\)'
+command! Todo :Grepper -noprompt -tool git -grepprg git grep -nIi '\(TODO\|FIXME\)'
+command! Hack :Grepper -noprompt -tool git -grepprg git grep -nIi '\(HACK\)'
