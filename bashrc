@@ -90,6 +90,9 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 # reset aliases
 unalias -a
 
+# so metrobi driver app works
+alias adbreverse='adb reverse tcp:5000 tcp:5000'
+
 # add alias to run ultimaker cura
 alias cura='/opt/Ultimaker-Cura-5.0.0-linux.AppImage &>/dev/null & '
 
@@ -119,6 +122,7 @@ fi
 
 # for git commands
 # can also use --author, -S, --no-merges, --until and -- <file name> with log
+# new pathspec exclusion :!
 alias gl='git log'
 alias gl1d='git log --since=1.day'
 alias glf='git log --pretty=format:"%h | %an (commiter %cn) | %ar | %s"'
@@ -138,6 +142,8 @@ alias grs='git restore'
 alias grm='git remote'
 alias gf='git fetch'
 alias gt='git tag'
+alias gst='git stash'
+alias gr='git rebase'
 
 # use vim instead of vi
 alias vi=vim

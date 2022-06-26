@@ -223,10 +223,25 @@ let g:lsp_diagnostics_signs_warning = {'text': 'WW'}
 " let g:lsp_diagnostics_virtual_text_insert_mode_enabled = 1
 " let g:lsp_diagnostics_virtual_text_prefix = " ‣ "
 let g:lsp_diagnostics_echo_cursor = 1
-" let g:lsp_settings = {"max-line-length": 200}
+let g:lsp_settings = {
+\   'pylsp-all': {
+\     'workspace_config': {
+\       'pylsp': {
+\         'configurationSources': ['flake8']
+\       }
+\     }
+\   },
+\}
 
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
       set termguicolors
 endif
+
+" vim-grepper
+nmap gs  <plug>(GrepperOperator)
+xmap gs  <plug>(GrepperOperator)
+nnoremap <leader>g :Grepper -tool git<cr>
+command! todo :Grepper -noprompt -tool git -grepprg git grep -nIi '\(TODO\|FIXME\)'
+command! hack :Grepper -noprompt -tool git -grepprg git grep -nIi '\(HACK\)'
