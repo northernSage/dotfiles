@@ -90,6 +90,10 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 # reset aliases
 unalias -a
 
+# run metrobi api
+alias runtest="CONFIG=local && ./localrun.sh"
+alias runprod="CONFIG=prod && ./localrun.sh"
+
 # so metrobi driver app works
 alias adbreverse='adb reverse tcp:5000 tcp:5000'
 
