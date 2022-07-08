@@ -259,3 +259,13 @@ makezip() {
 up() {
     cd $(eval printf '../'%.0s "{1..$1}") && pwd;
 } && export -f up
+
+# curl requests
+post() {
+    REQUEST_COMMAND="curl -d '$1' -H \"Content-Type: application/json\" -X POST \"$2\""
+    if [[ -n $3 ]]; then
+        REQUEST_COMMAND="${REQUEST_COMMAND} -H \"Authorization: Bearer $3\""
+    fi
+    eval "$REQUEST_COMMAND"
+    echo ""
+}
