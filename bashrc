@@ -74,9 +74,6 @@ export ANDROID_SDK="$HOME/Android/Sdk"
 export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
 export PATH="$HOME/apps/android-studio/bin:$PATH"
 
-# doom emacs
-export PATH="$HOME/.emacs.d/bin:$PATH"
-
 # source all private keys from ssh dir as env vars
 source $HOME/.ssh/keys
 
@@ -123,6 +120,9 @@ alias ls="ls -h --color=auto"
 if [ "$PLATFORM" = "mac" ]; then
     alias ls="ls -h -G"
 fi
+
+# ssh shopify metrobi
+sh -i $HOME/.ssh/Shop.pem ubuntu@54.209.161.54
 
 # for git commands
 # can also use --author, -S, --no-merges, --until and -- <file name> with log
