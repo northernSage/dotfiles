@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# pydocstirng needs this
+pip install doq

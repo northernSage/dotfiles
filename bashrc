@@ -87,12 +87,14 @@ source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 # reset aliases
 unalias -a
 
+
 # run metrobi api
 alias runtest="export CONFIG=local && ./localrun.sh"
 alias runprod="export CONFIG=prod && ./localrun.sh"
 
-# so metrobi driver app works
+# metrobi stuff
 alias adbreverse='adb reverse tcp:5000 tcp:5000'
+alias sshshopify="sh -i $HOME/.ssh/Shop.pem ubuntu@54.209.161.54"
 
 # add alias to run ultimaker cura
 alias cura='/opt/Ultimaker-Cura-5.0.0-linux.AppImage &>/dev/null & '
@@ -120,9 +122,6 @@ alias ls="ls -h --color=auto"
 if [ "$PLATFORM" = "mac" ]; then
     alias ls="ls -h -G"
 fi
-
-# ssh shopify metrobi
-sh -i $HOME/.ssh/Shop.pem ubuntu@54.209.161.54
 
 # for git commands
 # can also use --author, -S, --no-merges, --until and -- <file name> with log
@@ -172,6 +171,7 @@ alias scr='cd ~/repos/github.com/northernSage/dotfiles/scripts'
 alias pdf='mupdf -r 160 -I'
 
 # activate venv using pyenv script
+alias p='python'
 alias venv='source createvenv'
 
 # *******************

@@ -16,3 +16,4 @@ a \
 echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
 echo 'you can now install any python version with pyenv install <py version>'
+
