@@ -147,6 +147,7 @@ alias gf='git fetch'
 alias gt='git tag'
 alias gst='git stash'
 alias gr='git rebase'
+alias gll='git log -1 HEAD'
 
 # use vim instead of vi
 alias vi=vim
@@ -214,7 +215,7 @@ export PS1="[\[\e[1;36m\]\W\[\e[m\]]-[\[\e[1;36m\]$(date +%k:%M)\[\e[m\]] \\$ "
 # * FUNCTIONS *
 # *************
 
-# we now have a trashbin
+# we now have a trashbin, yay!
 TRASH=$HOME/.trash
 trash () {
     [[ -z "$TRASH" ]] && return 1;
