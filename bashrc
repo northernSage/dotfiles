@@ -148,6 +148,7 @@ alias gt='git tag'
 alias gst='git stash'
 alias gr='git rebase'
 alias gll='git log -1 HEAD'
+alias grt='git reset'
 
 # use vim instead of vi
 alias vi=vim
